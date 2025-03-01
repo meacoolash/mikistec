@@ -1,4 +1,3 @@
-import { Social } from "./social"
 import { ContactForm } from "./contact-form"
 import { ProfilePic } from "./profile-pic"
 
@@ -18,7 +17,7 @@ export const Contact = () => {
                     </div>
                     <div className="w-full max-w-sm space-y-4">
                         <ContactForm />
-                        <Social />
+                        {/* <Social /> */}
                     </div>
                 </div>
             </div>
