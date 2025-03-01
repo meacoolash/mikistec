@@ -47,8 +47,8 @@ export default function Component() {
    
     */
 
+
   const [playing, setPlaying] = useState<number | null>(null)
-  //const audioRefs = useRef<{ [key: number]: HTMLAudioElement | null }>({})
   const audioRefs = useRef<Record<number, HTMLAudioElement | null>>({})
 
   const togglePlay = (trackId: number) => {
@@ -60,7 +60,6 @@ export default function Component() {
       audio.pause()
       setPlaying(null)
     } else {
-      // Pause any currently playing audio
       if (playing !== null && audioRefs.current[playing]) {
         audioRefs.current[playing]?.pause()
       }
@@ -68,6 +67,7 @@ export default function Component() {
       setPlaying(trackId)
     }
   }
+
 
   const restartTrack = (trackId: number) => {
     const audio = audioRefs.current[trackId]
@@ -187,7 +187,7 @@ export default function Component() {
                         <div className="">
                           <p className="font-medium">Track {item}</p>
                         </div>
-                        <audio ref={(el) => (audioRefs.current[item] = el)} src={`/music/${item}.mp3`} preload="metadata" />
+                        <audio ref={(el) => { audioRefs.current[item] = el }} src={`/music/${item}.mp3`} preload="metadata" />
                       </div>
 
                     </div>
