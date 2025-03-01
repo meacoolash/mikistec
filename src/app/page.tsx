@@ -48,7 +48,8 @@ export default function Component() {
     */
 
   const [playing, setPlaying] = useState<number | null>(null)
-  const audioRefs = useRef<{ [key: number]: HTMLAudioElement | null }>({})
+  //const audioRefs = useRef<{ [key: number]: HTMLAudioElement | null }>({})
+  const audioRefs = useRef<Record<number, HTMLAudioElement | null>>({})
 
   const togglePlay = (trackId: number) => {
     const audio = audioRefs.current[trackId]
