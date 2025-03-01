@@ -86,7 +86,7 @@ export default function Component() {
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl text-purple-900">About Me</h2>
                 <p className="text-purple-800/80">
-                  I'm a music producer and songwriter specializing in ambient and electronic music. With over a decade
+                  I&apos;m a music producer and songwriter specializing in ambient and electronic music. With over a decade
                   of experience in sound design and production, I create immersive soundscapes that tell stories and
                   evoke emotions.
                 </p>
@@ -108,7 +108,7 @@ export default function Component() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl text-purple-900">
-                  Let's Create Together
+                  Let&apos;s Create Together
                 </h2>
                 <p className="max-w-[600px] text-purple-800/80">
                   Get in touch for collaborations, commissions, or just to say hello

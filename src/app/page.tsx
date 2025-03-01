@@ -3,24 +3,24 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Pause, Play, Music2, Instagram, Twitter, Mail, RotateCcw, Rewind, Youtube } from "lucide-react"
+import { Pause, Play, Music2, Instagram, Mail, RotateCcw, Youtube } from "lucide-react"
 import { useState, useRef } from "react"
-import { Barlow_Condensed, Indie_Flower, Yomogi, Give_You_Glory } from 'next/font/google';
+import { Barlow_Condensed, Indie_Flower } from 'next/font/google';
 import Image from "next/image";
 
 
 
-interface Track {
-  id: number
-  title: string
-  url: string
-}
+// interface Track {
+//   id: number
+//   title: string
+//   url: string
+// }
 
-const tracks: Track[] = [
-  { id: 1, title: "Track 1", url: "/music/1.mp3" },
-  { id: 2, title: "Track 2", url: "/music/1.mp3" },
-  { id: 3, title: "Track 3", url: "/music/1.mp3" },
-]
+// const tracks: Track[] = [
+//   { id: 1, title: "Track 1", url: "/music/1.mp3" },
+//   { id: 2, title: "Track 2", url: "/music/1.mp3" },
+//   { id: 3, title: "Track 3", url: "/music/1.mp3" },
+// ]
 
 
 const barlowCondensed = Barlow_Condensed({
@@ -202,7 +202,7 @@ export default function Component() {
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl text-purple-900">About Me</h2>
                 <p className="text-purple-800/80">
-                  I'm a music producer and songwriter. <br />
+                  I&apos;m a music producer and songwriter. <br />
                   Chasing melodies since I could babble, grew up with instruments, played anything with strings, keys, or valves, convinced music could reshape reality.<br />
                   Years as a digital nomad gave me stories, now I shape them into songs in Logic Pro.
                 </p>
@@ -225,7 +225,7 @@ export default function Component() {
               <Image src={'/profile.jpeg'} alt={'Mikulas Stec profile picture'} width="100" height="100" className="rounded-full shadow-sm shadow-black object-cover" />
               <div className="space-y-2">
                 <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl text-purple-900">
-                  Let's Create Together
+                  Let&apos;s Create Together
                 </h2>
                 <p className="max-w-[600px] text-purple-800/80">
                   Get in touch for collaborations, commissions, or just to say hello
