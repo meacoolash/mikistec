@@ -33,7 +33,7 @@ export const Player = () => {
     }
 
     return (
-        <div className="grid w-3/4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+        <div className="grid w-3/4 grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8 mt-8">
             {[1, 2, 3].map((item) => (
                 <div
                     key={item}
