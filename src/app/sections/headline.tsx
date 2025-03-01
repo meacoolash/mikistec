@@ -1,4 +1,5 @@
 import { Indie_Flower } from "next/font/google";
+import Image from "next/image";
 
 const indieFlower = Indie_Flower({
     subsets: ['latin'],
@@ -26,7 +27,8 @@ export const Headline = () => {
                     </div>
                     <div className="w-full space-y-12">
                         <div className="flex justify-center space-x-2">
-                            <p className="text-8xl text-purple-800/60">🎧</p>
+                            <Image src={'/headphones.jpeg'} alt={'Miki Stec Music Production'} width="120" height="120" className="rounded-full object-cover" />
+                            {/* <p className="text-9xl text-purple-800/60">🎧</p> */}
                         </div>
                         <p className={`${indieFlower.className} text-3xl`}>Get comfy. Headphones on. Play.</p>
                     </div>
