@@ -15,9 +15,9 @@ export const Headline = () => {
                         <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-purple-900">
                             Song Alchemy for Altered States
                         </h1>
-                        <p className="mx-auto max-w-[700px] text-purple-800/80 md:text-xl">
+                        {/* <p className="mx-auto max-w-[700px] text-purple-800/80 md:text-xl">
                             Soundscapes to expand your consciousness
-                        </p>
+                        </p> */}
                         <p className="mx-auto max-w-[700px] text-purple-800/80 md:text-xl">
                             Music to guide you beyond ordinary perception
                         </p>
