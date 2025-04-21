@@ -1,0 +1,9 @@
+{
+    "redirects": [
+        {
+            "source": "/qr",
+            "destination": "https://linktr.ee/mikistec",
+            "permanent": true
+        }
+    ]
+}
