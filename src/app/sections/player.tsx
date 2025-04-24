@@ -8,29 +8,34 @@ export const Player = () => {
     const audioRefs = useRef<Record<number, HTMLAudioElement | null>>({})
 
     const togglePlay = (trackId: number) => {
-        const audio = audioRefs.current[trackId]
-        if (!audio) return
+        const audio = audioRefs.current[trackId];
+        if (!audio) return;
 
+        // If the same track is clicked again, toggle pause
         if (playing === trackId) {
-            audio.pause()
-            setPlaying(null)
+            audio.pause();
+            setPlaying(null);
         } else {
+            // Pause the currently playing track and reset its currentTime
             if (playing !== null && audioRefs.current[playing]) {
-                audioRefs.current[playing]?.pause()
+                const previousAudio = audioRefs.current[playing];
+                previousAudio.pause();
+                previousAudio.currentTime = 0; // Reset the previous track to the beginning
             }
-            audio.play()
-            setPlaying(trackId)
+            // Play the new track
+            audio.play();
+            setPlaying(trackId);
         }
-    }
+    };
 
     const restartTrack = (trackId: number) => {
-        const audio = audioRefs.current[trackId]
-        if (!audio) return
-        audio.currentTime = 0
+        const audio = audioRefs.current[trackId];
+        if (!audio) return;
+        audio.currentTime = 0;
         if (playing === trackId) {
-            audio.play()
+            audio.play();
         }
-    }
+    };
 
     return (
         <div className="grid w-3/4 grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8 mt-8">
