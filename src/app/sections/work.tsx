@@ -7,9 +7,9 @@ export const Work = () => {
             <div className="container px-4 md:px-6">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center">
                     <div className="space-y-2">
-                        <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl text-purple-900">Works</h2>
+                        <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl text-purple-900"> Sneak peek</h2>
                         <p className="max-w-[900px] text-purple-800/80">
-                            A selection of my latest productions
+                            A selection of some unmastered mixes
                         </p>
                     </div>
                     <Player></Player>
@@ -17,13 +17,10 @@ export const Work = () => {
                         <FormsSpree type='subscribe-ms' />
                     </div>
                 </div>
-
-
             </div>
-
-
-
-
+            {/* <div className="flex justify-center pt-16">
+                <Progress />
+            </div> */}
         </section>
     )
 }
