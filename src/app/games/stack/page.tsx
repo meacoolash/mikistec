@@ -32,11 +32,6 @@ export default function StackGamePage() {
             <Link href="/games" className="text-xs text-ink/40 hover:text-ink/70">
               ← All games
             </Link>
-            <p className="flex items-center justify-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-accent">
-              <span aria-hidden="true">✛</span>
-              A small experiment
-              <span aria-hidden="true">✛</span>
-            </p>
             <h1 className="text-[clamp(2.25rem,1.5rem+3.5vw,4rem)] font-display font-black leading-[0.98] tracking-tighter">
               Stack your website.
             </h1>

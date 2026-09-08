@@ -22,16 +22,6 @@ export const metadata: Metadata = {
   },
 }
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="flex items-center justify-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-accent">
-      <span aria-hidden="true">✛</span>
-      {children}
-      <span aria-hidden="true">✛</span>
-    </p>
-  )
-}
-
 export default function BuilderGamePage() {
   return (
     <>
@@ -45,7 +35,6 @@ export default function BuilderGamePage() {
             >
               ← All games
             </Link>
-            <Eyebrow>A small experiment</Eyebrow>
             <h1 className="text-[clamp(2.25rem,1.5rem+3.5vw,4rem)] font-display font-black leading-[0.98] tracking-tighter">
               Build your own website.
             </h1>

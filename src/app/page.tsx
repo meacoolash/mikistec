@@ -263,14 +263,32 @@ function ContactForm() {
 
   if (state.succeeded) {
     return (
-      <p className="text-lg text-ink">
-        Got it. I&apos;ll get back to you within a day or two.
-      </p>
+      <div className="flex flex-col items-center gap-5 text-center">
+        <span className="text-6xl" aria-hidden="true">
+          🎉
+        </span>
+        <p className="text-lg text-ink">
+          Got it. I&apos;ll get back to you within a day or two.
+        </p>
+        <Link
+          href="/games/pexeso"
+          className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-7 py-3 text-sm font-semibold tracking-wide text-paper transition-opacity hover:opacity-90"
+        >
+          While you wait, play <span aria-hidden="true">→</span>
+        </Link>
+      </div>
     )
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full flex-col gap-5 text-left">
+    <>
+      <div className="mb-8 flex flex-col items-center gap-8">
+        <Eyebrow>Let&apos;s talk</Eyebrow>
+        <h2 className="text-center text-[clamp(2rem,1.5rem+2.8vw,3.5rem)] font-display font-black leading-[0.98] tracking-tighter">
+          Tell me about your business.
+        </h2>
+      </div>
+      <form onSubmit={handleSubmit} className="flex w-full flex-col gap-5 text-left">
       <div>
         <label htmlFor="name" className="mb-1 block text-xs uppercase tracking-wide text-ink/50">
           Name
@@ -318,7 +336,8 @@ function ContactForm() {
       >
         {CTA_LABEL} <span aria-hidden="true">→</span>
       </button>
-    </form>
+      </form>
+    </>
   )
 }
 
@@ -445,10 +464,6 @@ export default function Page() {
       {/* 6. Contact */}
       <section id="contact" className="bg-paper px-6 py-24 text-ink md:py-32">
         <div className="mx-auto flex max-w-md flex-col items-center gap-8 text-center">
-          <Eyebrow>Let&apos;s talk</Eyebrow>
-          <h2 className="text-[clamp(2rem,1.5rem+2.8vw,3.5rem)] font-display font-black leading-[0.98] tracking-tighter">
-            Tell me about your business.
-          </h2>
           <ContactForm />
         </div>
       </section>

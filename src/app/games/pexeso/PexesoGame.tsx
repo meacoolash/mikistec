@@ -1,10 +1,14 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { getAudioCtx } from "./audioContext"
 import { ConfettiLayer } from "./ConfettiLayer"
 import { useConfetti } from "./useConfetti"
+
+const FREE_GAME_MOVE_LIMIT = 15
+const CLAIM_CODE = `CARDSHARK${FREE_GAME_MOVE_LIMIT}`
 
 type CardContent =
   | { kind: "image"; src: string; alt: string }
@@ -181,6 +185,7 @@ export function PexesoGame() {
   const [elapsed, setElapsed] = useState(0)
   const [best, setBest] = useState<number | null>(null)
   const [muted, setMuted] = useState(false)
+  const [codeCopied, setCodeCopied] = useState(false)
   const startTime = useRef<number | null>(null)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const { confetti, spawnConfetti } = useConfetti()
@@ -277,6 +282,16 @@ export function PexesoGame() {
 
   function isVisible(index: number) {
     return flipped.includes(index) || matched.has(cards[index].pairId)
+  }
+
+  async function copyCode() {
+    try {
+      await navigator.clipboard.writeText(CLAIM_CODE)
+      setCodeCopied(true)
+      setTimeout(() => setCodeCopied(false), 2000)
+    } catch {
+      // ignore
+    }
   }
 
   return (
@@ -376,10 +391,32 @@ export function PexesoGame() {
                 <span>Time {formatTime(elapsed)}</span>
                 <span>Moves {moves}</span>
               </div>
+              {moves <= FREE_GAME_MOVE_LIMIT ? (
+                <div className="space-y-3 border-t border-ink/10 pt-4">
+                  <p className="text-sm text-ink/70">
+                    {FREE_GAME_MOVE_LIMIT} moves or under. Here&apos;s your code, mention it
+                    when you reach out and I&apos;ll build you a simple custom game for your
+                    website. Free.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={copyCode}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-dashed border-accent/50 bg-accent/5 px-4 py-2 font-display text-sm font-black tracking-wide text-accent transition-colors hover:bg-accent/10"
+                  >
+                    {codeCopied ? "Copied!" : CLAIM_CODE}
+                  </button>
+                  <Link
+                    href="/#contact"
+                    className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-6 py-2.5 text-xs font-semibold tracking-wide text-paper transition-opacity hover:opacity-90"
+                  >
+                    Claim it <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              ) : null}
               <button
                 type="button"
                 onClick={reset}
-                className="cursor-pointer rounded-md bg-accent px-6 py-2.5 text-xs font-semibold tracking-wide text-paper transition-opacity hover:opacity-90"
+                className="cursor-pointer rounded-md border border-ink/20 px-6 py-2.5 text-xs font-semibold tracking-wide text-ink/70 transition-colors hover:border-ink/40 hover:text-ink"
               >
                 Play again
               </button>
