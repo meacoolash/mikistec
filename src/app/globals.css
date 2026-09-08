@@ -169,13 +169,13 @@
   }
 }
 
-/* Sweeps a bright highlight back and forth across a gold gradient
-   (background-position, so it stays compositor-cheap) while a soft amber
-   drop-shadow gives the text an actual glow instead of just a gold fill.
-   `alternate` reverses the sweep each cycle instead of snapping back, and
-   size 200% + position 0 -> 200% is exactly one full tile with the default
-   background-repeat, so both ends of the sweep render identically (always
-   settles back on the gold gradient, never mid-sweep on a dark stop). */
+/* Sweeps a bright highlight across a gold gradient (background-position, so it
+   stays compositor-cheap) while a soft amber drop-shadow gives the text an
+   actual glow instead of just a gold fill. Size 200% + position 0 -> 200% is
+   exactly one full tile with the default background-repeat, so the first and
+   last frame render identically (always settles back on the gold gradient,
+   never mid-sweep on a dark stop), and the positive direction sweeps the
+   highlight left to right, matching reading direction. */
 @keyframes gold-shine {
   to {
     background-position: 200% 0;
@@ -199,5 +199,5 @@
 }
 
 .text-gold-shine {
-  animation: gold-shine 2.6s ease-in-out infinite alternate;
+  animation: gold-shine 3.2s linear infinite;
 }
