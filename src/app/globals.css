@@ -194,10 +194,10 @@
 .text-gold {
   background-image: linear-gradient(
       90deg,
-      rgba(20, 14, 4, 0.4) 0%,
+      rgba(20, 14, 4, 0.18) 0%,
       rgba(20, 14, 4, 0) 20%,
       rgba(20, 14, 4, 0) 80%,
-      rgba(20, 14, 4, 0.12) 100%
+      rgba(20, 14, 4, 0.06) 100%
     ),
     linear-gradient(100deg, #ffd75e 0%, #ffd75e 25%, #7a7a7a 50%, #ffd75e 75%, #ffd75e 100%);
   background-size: 100% 100%, 300% 100%;

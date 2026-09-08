@@ -390,17 +390,10 @@ export default function Page() {
       {/* 3. Why not Wix / AI */}
       <section className="bg-accent px-6 py-24 text-paper md:py-32">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
-          <h2 className="text-[clamp(1.75rem,1.3rem+2vw,2.75rem)] font-display font-black leading-[1] tracking-tighter">
-            Why not Wix?
-          </h2>
-          <p className="text-lg text-paper/85">
-            Wix, Squarespace and AI are great tools.
-            <br />
-            If you want, you can use them.
-          </p>
+          <p className="text-lg text-paper/85">Nothing to learn. Nothing to manage.</p>
           <GoldText>I give you simplicity.</GoldText>
           <p className="text-lg text-paper/85">
-            + Speed, SEO, OG images, favicons, analytics
+            + Speed, SEO, analytics, integrations, tools, games,
             <br />
             and much more.
           </p>
