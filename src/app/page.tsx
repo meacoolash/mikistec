@@ -396,14 +396,11 @@ export default function Page() {
           <p className="text-lg text-paper/85">
             Wix, Squarespace and AI are great tools.
             <br />
-            If you want, you can use them,{" "}
-            <span className="font-display font-black italic">but</span>
+            If you want, you can use them.
           </p>
-          <GoldText>I give you simplicity,</GoldText>
+          <GoldText>I give you simplicity.</GoldText>
           <p className="text-lg text-paper/85">
-            while I take care of the details.
-            <br />
-            Speed, SEO, OG images, favicons, analytics
+            + Speed, SEO, OG images, favicons, analytics
             <br />
             and much more.
           </p>

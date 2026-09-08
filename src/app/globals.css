@@ -169,29 +169,38 @@
   }
 }
 
-/* Sweeps a bright highlight across a gold gradient (background-position, so it
-   stays compositor-cheap) while a soft amber drop-shadow gives the text an
-   actual glow instead of just a gold fill. Size 200% + position 0 -> 200% is
-   exactly one full tile with the default background-repeat, so the first and
-   last frame render identically (always settles back on the gold gradient,
-   never mid-sweep on a dark stop), and the positive direction sweeps the
-   highlight left to right, matching reading direction. */
+/* Text sits flat gold at rest, with a static dark vignette left permanently
+   on both edges (first background-image layer, untouched by the animation).
+   A wide gray shadow sweeps across the second (gold) layer once, settles
+   back on flat gold, then holds for ~2s before the next pass. background-size
+   300% + a wide gray band at the gradient's midpoint means the resting
+   window (0%) sees flat gold with no dip in sight; the keyframes hold that
+   position for the first ~2s of the cycle, then sweep position by 150%
+   (exactly one full tile at this size, so it lands back on flat gold with no
+   jump) over the remaining ~1.8s, carrying the shadow across the text once,
+   slowly enough to actually read as a shadow passing rather than a flicker.
+   background-position keyframes take one value per layer (vignette, gold);
+   the vignette's value never changes, so only the gold layer animates. */
 @keyframes gold-shine {
-  to {
-    background-position: 200% 0;
+  0%,
+  52.6% {
+    background-position: 0 0, 0% 0;
+  }
+  100% {
+    background-position: 0 0, 150% 0;
   }
 }
 
 .text-gold {
   background-image: linear-gradient(
-    100deg,
-    #8a6412 0%,
-    #ffd75e 25%,
-    #fff6d0 50%,
-    #ffd75e 75%,
-    #8a6412 100%
-  );
-  background-size: 200% 100%;
+      90deg,
+      rgba(20, 14, 4, 0.4) 0%,
+      rgba(20, 14, 4, 0) 20%,
+      rgba(20, 14, 4, 0) 80%,
+      rgba(20, 14, 4, 0.12) 100%
+    ),
+    linear-gradient(100deg, #ffd75e 0%, #ffd75e 25%, #7a7a7a 50%, #ffd75e 75%, #ffd75e 100%);
+  background-size: 100% 100%, 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -199,5 +208,5 @@
 }
 
 .text-gold-shine {
-  animation: gold-shine 3.2s linear infinite;
+  animation: gold-shine 3.8s linear infinite;
 }
