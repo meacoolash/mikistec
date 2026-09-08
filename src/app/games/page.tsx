@@ -27,6 +27,12 @@ const GAMES: Game[] = [
     description:
       "Drag a few blocks onto a page and see how it feels to build your own website.",
   },
+  {
+    href: "/games/pexeso",
+    title: "Pexeso",
+    description:
+      "Flip the cards, find the iconic duos. Ten pairs, one of them is you.",
+  },
 ]
 
 export default function GamesIndexPage() {

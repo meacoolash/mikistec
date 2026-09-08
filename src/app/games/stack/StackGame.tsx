@@ -256,7 +256,7 @@ export function StackGame() {
                 e.stopPropagation()
                 startGame()
               }}
-              className="bg-accent px-6 py-2.5 text-xs font-semibold tracking-wide text-paper transition-opacity hover:opacity-90"
+              className="rounded-md bg-accent px-6 py-2.5 text-xs font-semibold tracking-wide text-paper transition-opacity hover:opacity-90"
             >
               Start ▸
             </button>
@@ -273,7 +273,7 @@ export function StackGame() {
             <Link
               href="/#contact"
               onClick={(e) => e.stopPropagation()}
-              className="mt-3 inline-flex items-center justify-center gap-2 bg-accent px-6 py-2.5 text-xs font-semibold tracking-wide text-paper transition-opacity hover:opacity-90"
+              className="mt-3 inline-flex items-center justify-center gap-2 rounded-md bg-accent px-6 py-2.5 text-xs font-semibold tracking-wide text-paper transition-opacity hover:opacity-90"
             >
               Build it for me <span aria-hidden="true">→</span>
             </Link>

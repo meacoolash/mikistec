@@ -1,11 +1,13 @@
 "use client"
 
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useForm, ValidationError } from "@formspree/react"
+import { Header } from "./sections/header"
 import { Footer } from "./sections/footer"
 
-const CTA_LABEL = "Let's sell"
+const CTA_LABEL = "YES"
 
 function Eyebrow({
   children,
@@ -27,6 +29,150 @@ function Eyebrow({
   )
 }
 
+function Sparkle({
+  className = "",
+  style,
+}: {
+  className?: string
+  style?: React.CSSProperties
+}) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className={`pointer-events-none absolute text-[#FFC53D] opacity-0 ${className}`}
+      style={style}
+    >
+      <path
+        d="M12 0C12 6.627 17.373 12 24 12C17.373 12 12 17.373 12 24C12 17.373 6.627 12 0 12C6.627 12 12 6.627 12 0Z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
+
+const SPARKLES = [
+  { top: "-14%", left: "-14%", size: "h-3 w-3", delay: 0.55 },
+  { top: "-28%", left: "48%", size: "h-2.5 w-2.5", delay: 0.7 },
+  { top: "6%", right: "-16%", size: "h-3.5 w-3.5", delay: 0.85 },
+  { bottom: "-18%", left: "12%", size: "h-2 w-2", delay: 1 },
+  { bottom: "-22%", right: "2%", size: "h-2.5 w-2.5", delay: 0.65 },
+]
+
+// One-shot 4s show, starting 2s after the page loads: every icon takes a
+// turn (shuffled, evenly spaced across the 4s), then everything settles back
+// to rest. Transform + opacity only, so it runs on the compositor thread and
+// stays framerate-independent (same fix QVIKS needed for its popcorn rain).
+const ICONS = ["🏆", "💰", "🥇", "💸", "🎉", "⭐", "✨", "💵"]
+const SIZES = ["text-2xl", "text-3xl", "text-4xl"]
+const SHOW_MS = 4000
+
+function randomBetween(min: number, max: number) {
+  return min + Math.random() * (max - min)
+}
+
+function shuffled<T>(arr: T[]): T[] {
+  const copy = [...arr]
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[copy[i], copy[j]] = [copy[j], copy[i]]
+  }
+  return copy
+}
+
+type Particle = { id: number; icon: string; dx: number; dy: number; rot: number; size: string }
+
+function SparklingGood() {
+  const [popped, setPopped] = useState(false)
+  const [showSparkles, setShowSparkles] = useState(false)
+  const [particles, setParticles] = useState<Particle[]>([])
+  const nextId = useRef(0)
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([])
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false
+    if (reducedMotion) return
+
+    const spawn = (icon: string) => {
+      const id = nextId.current++
+      const angle = Math.random() * Math.PI * 2
+      const dist = randomBetween(45, 78)
+      const particle: Particle = {
+        id,
+        icon,
+        dx: Math.cos(angle) * dist,
+        dy: Math.sin(angle) * dist,
+        rot: randomBetween(-30, 30),
+        size: SIZES[Math.floor(Math.random() * SIZES.length)],
+      }
+      setParticles((prev) => [...prev, particle])
+      timers.current.push(setTimeout(() => setParticles((prev) => prev.filter((p) => p.id !== id)), 950))
+    }
+
+    timers.current.push(
+      setTimeout(() => {
+        setPopped(true)
+        setShowSparkles(true)
+        timers.current.push(setTimeout(() => setShowSparkles(false), SHOW_MS))
+
+        const order = shuffled(ICONS)
+        const interval = SHOW_MS / order.length
+        order.forEach((icon, i) => timers.current.push(setTimeout(() => spawn(icon), i * interval)))
+      }, 2000),
+    )
+
+    return () => timers.current.forEach(clearTimeout)
+  }, [])
+
+  return (
+    <span
+      className="relative inline-block"
+      style={
+        popped
+          ? { animation: `word-pop 700ms ease-out, word-glow-pulse ${SHOW_MS - 700}ms ease-in-out 700ms forwards` }
+          : undefined
+      }
+    >
+      good
+      {particles.map((p) => (
+        <span
+          key={p.id}
+          aria-hidden="true"
+          className={`pointer-events-none absolute left-1/2 top-1/2 select-none opacity-0 ${p.size}`}
+          style={
+            {
+              textShadow: "0 3px 5px rgba(0,0,0,0.3)",
+              "--dx": `${p.dx}px`,
+              "--dy": `${p.dy}px`,
+              "--rot": `${p.rot}deg`,
+              animation: "particle-burst 900ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards",
+            } as React.CSSProperties
+          }
+        >
+          {p.icon}
+        </span>
+      ))}
+      {showSparkles &&
+        SPARKLES.map((s, i) => (
+          <Sparkle
+            key={i}
+            className={s.size}
+            style={{
+              top: s.top,
+              left: s.left,
+              right: s.right,
+              bottom: s.bottom,
+              animation: `sparkle-pop 0.4s ease-out ${s.delay}s forwards, sparkle-twinkle 1.8s ease-in-out ${
+                s.delay + 0.4
+              }s infinite`,
+            }}
+          />
+        ))}
+    </span>
+  )
+}
+
 function CTAButton({
   variant = "solid",
   className = "",
@@ -41,7 +187,7 @@ function CTAButton({
   return (
     <Link
       href="#contact"
-      className={`inline-flex items-center justify-center gap-2 px-7 py-3 text-sm font-semibold tracking-wide transition-opacity hover:opacity-90 ${styles} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-md px-7 py-3 text-sm font-semibold tracking-wide transition-opacity hover:opacity-90 ${styles} ${className}`}
     >
       {CTA_LABEL} <span aria-hidden="true">→</span>
     </Link>
@@ -126,7 +272,7 @@ function ContactForm() {
       <button
         type="submit"
         disabled={state.submitting}
-        className="mt-3 inline-flex items-center justify-center gap-2 self-start bg-accent px-7 py-3 text-sm font-semibold tracking-wide text-paper transition-opacity hover:opacity-90 disabled:opacity-50"
+        className="mt-3 inline-flex items-center justify-center gap-2 self-start rounded-md bg-accent px-7 py-3 text-sm font-semibold tracking-wide text-paper transition-opacity hover:opacity-90 disabled:opacity-50"
       >
         {CTA_LABEL} <span aria-hidden="true">→</span>
       </button>
@@ -136,13 +282,15 @@ function ContactForm() {
 
 export default function Page() {
   return (
-    <main className="font-body">
+    <>
+      <Header />
+      <main className="font-body">
       {/* 1. Hero */}
       <section className="bg-paper px-6 py-24 text-ink md:py-32">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-8 text-center">
           <Eyebrow>Websites that sell</Eyebrow>
           <h1 className="text-[clamp(2.5rem,1.5rem+5vw,5rem)] font-display font-black leading-[0.98] tracking-tighter">
-            You&apos;re good. Your website should be too.
+            You&apos;re <SparklingGood />. Your website should be too.
           </h1>
           <p className="max-w-md text-lg text-ink/70">
             I research your business, write it, build it, and launch it. You just say{" "}
@@ -258,8 +406,8 @@ export default function Page() {
           <ContactForm />
         </div>
       </section>
-
+      </main>
       <Footer />
-    </main>
+    </>
   )
 }

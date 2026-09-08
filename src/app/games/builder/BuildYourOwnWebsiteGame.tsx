@@ -422,7 +422,7 @@ export function BuildYourOwnWebsiteGame() {
                     <button
                       type="button"
                       onClick={() => setPopupVisible(false)}
-                      className="mt-4 bg-accent px-4 py-2 text-xs font-semibold text-paper transition-opacity hover:opacity-90"
+                      className="mt-4 rounded-md bg-accent px-4 py-2 text-xs font-semibold text-paper transition-opacity hover:opacity-90"
                     >
                       No thanks, continue building
                     </button>
@@ -446,7 +446,7 @@ export function BuildYourOwnWebsiteGame() {
             </p>
             <Link
               href="/#contact"
-              className="mt-6 inline-flex items-center justify-center gap-2 bg-accent px-7 py-3 text-sm font-semibold tracking-wide text-paper transition-opacity hover:opacity-90"
+              className="mt-6 inline-flex items-center justify-center gap-2 rounded-md bg-accent px-7 py-3 text-sm font-semibold tracking-wide text-paper transition-opacity hover:opacity-90"
             >
               Build it for me <span aria-hidden="true">→</span>
             </Link>
