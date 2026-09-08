@@ -266,7 +266,7 @@ function ContactForm() {
           type="text"
           required
           className="w-full border-b border-ink/25 bg-transparent py-2 text-ink placeholder:text-ink/30 focus:border-accent focus:outline-none"
-          placeholder="e.g. career coaching for engineers"
+          placeholder="e.g. a bakery, a design studio, a personal brand"
         />
       </div>
       <button
@@ -346,14 +346,18 @@ export default function Page() {
           <p className="text-lg text-paper/85">
             Wix, Squarespace and AI are great tools.
             <br />
-            If you want, you can.
-            <br />
-            I use AI too.
+            If you want, you can use them.
           </p>
           <p className="font-display text-2xl font-black leading-tight tracking-tight text-orange-500">
             I give you simplicity.
           </p>
-          <p className="text-lg text-paper/85">Fast. SEO-ready. Built for you.</p>
+          <p className="text-lg text-paper/85">
+            And yet, I handle the complexity.
+            <br />
+            Fast. SEO-optimized. Built for you — down to the last detail.
+            <br />
+            OG images, favicons, nothing left out.
+          </p>
         </div>
       </section>
 

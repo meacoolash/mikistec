@@ -4,8 +4,18 @@ import { Header } from "../sections/header"
 import { Footer } from "../sections/footer"
 
 export const metadata: Metadata = {
-  title: "Games — Miki Stec",
+  title: "Games",
   description: "A few small, playful experiments. Nothing you need. Just fun.",
+  alternates: { canonical: "/games" },
+  openGraph: {
+    title: "Games — Miki Stec",
+    description: "A few small, playful experiments. Nothing you need. Just fun.",
+    url: "/games",
+  },
+  twitter: {
+    title: "Games — Miki Stec",
+    description: "A few small, playful experiments. Nothing you need. Just fun.",
+  },
 }
 
 type Game = {
