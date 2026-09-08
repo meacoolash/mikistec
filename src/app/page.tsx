@@ -62,7 +62,7 @@ function Step({
       <span className="w-8 shrink-0 font-display text-2xl font-black text-accent">
         {n}
       </span>
-      <div>
+      <div className="text-left">
         <h3 className="mb-1 font-display text-lg font-extrabold">{title}</h3>
         <p className="text-ink/70">{children}</p>
       </div>
@@ -214,19 +214,19 @@ export default function Page() {
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-10 text-center">
           <Eyebrow>How it works</Eyebrow>
           <h2 className="text-[clamp(2rem,1.5rem+2.8vw,3.5rem)] font-display font-black leading-[0.98] tracking-tighter">
-            Done for you. From the first email.
+            Easy.
           </h2>
           <div className="flex w-full flex-col gap-8">
             <Step n="1" title="I research you first">
               Instagram, press, link-in-bio, directory listings — wherever your business already
-              shows up. You don&apos;t send me a brief.
+              shows up. You don&apos;t need to send me anything. Optionally, you can.
             </Step>
-            <Step n="2" title="You get a draft, not a form">
-              No blank fields to fill in. A real, working page, built from what I found.
+            <Step n="2" title="You get a draft">
+              A real, working page, built from what I found.
             </Step>
-            <Step n="3" title="One fix, then live">
-              We adjust it together, once, and it launches. No CMS to learn — after that, you just
-              tell me what to change and I do it.
+            <Step n="3" title="Refine and go live.">
+              We adjust it together, then go live. I take care of the domain too.
+              Nothing to learn. Nothing for you to manage.
             </Step>
           </div>
         </div>
@@ -256,10 +256,6 @@ export default function Page() {
           </h2>
           <p className="text-ink/70">Three fields. That&apos;s it.</p>
           <ContactForm />
-          <p className="mt-6 text-sm text-ink/40">
-            Outside of client work, I also shoot film photography and produce music — more on that
-            soon.
-          </p>
         </div>
       </section>
 
