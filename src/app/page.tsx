@@ -370,25 +370,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 4. Grow with me */}
-      <section className="bg-stone-200 px-6 py-24 text-ink md:py-32">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
-          <h2 className="text-[clamp(2rem,1.5rem+2.8vw,3.5rem)] font-display font-black leading-[0.98] tracking-tighter">
-            Grow with me.
-          </h2>
-          <p className="text-lg text-ink/75">
-            CRM, email marketing, payments, booking, automation.
-            <br />
-            Your website is built to grow when you need it.
-          </p>
-          <p className="text-lg text-ink/75">
-            Ready to work with the tools and platforms you use today, and
-            whatever comes <em className="italic">next</em>.
-          </p>
-        </div>
-      </section>
-
-      {/* 5. How it works */}
+      {/* 4. How it works */}
       <section className="bg-paper px-6 py-24 text-ink md:py-32">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-10 text-center">
           <Eyebrow>How it works</Eyebrow>
@@ -397,15 +379,18 @@ export default function Page() {
           </h2>
           <div className="flex w-full flex-col gap-8">
             <Step n="1" title="I research you first">
-              Instagram, press, link-in-bio, directory listings, wherever your business already
-              shows up. You don&apos;t need to send me anything. Optionally, you can.
+              Instagram, LinkedIn, Google, wherever your business already shows up. Then I build
+              a real, working first draft from what I find. You don&apos;t need to send me
+              anything. Optionally, you can.
             </Step>
-            <Step n="2" title="You get a draft">
-              A real, working page, built from what I found.
-            </Step>
-            <Step n="3" title="Refine and go live.">
-              We adjust it together, then go live. I take care of the domain too.
+            <Step n="2" title="Refine and go live">
+              We adjust it together, then we go live. I take care of the domain too.
               Nothing to learn. Nothing for you to manage.
+            </Step>
+            <Step n="3" title="Grow with me">
+              CRM, email marketing, payments, booking, automation, your website is ready to
+              connect when you need it. Ready to work with the tools and platforms you use today,
+              and whatever comes next.
             </Step>
           </div>
         </div>
