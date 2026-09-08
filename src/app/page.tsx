@@ -60,7 +60,7 @@ const SPARKLES = [
   { bottom: "-22%", right: "2%", size: "h-2.5 w-2.5", delay: 0.65 },
 ]
 
-// One-shot 4s show, starting 2s after the page loads: every icon takes a
+// One-shot 4s show, starting 1s after the page loads: every icon takes a
 // turn (shuffled, evenly spaced across the 4s), then everything settles back
 // to rest. Transform + opacity only, so it runs on the compositor thread and
 // stays framerate-independent (same fix QVIKS needed for its popcorn rain).
@@ -119,7 +119,7 @@ function SparklingGood() {
         const order = shuffled(ICONS)
         const interval = SHOW_MS / order.length
         order.forEach((icon, i) => timers.current.push(setTimeout(() => spawn(icon), i * interval)))
-      }, 2000),
+      }, 1000),
     )
 
     return () => timers.current.forEach(clearTimeout)
