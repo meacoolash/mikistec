@@ -178,7 +178,7 @@ export default function Page() {
           </h2>
           <p className="text-lg text-paper/75">
             25+ years across software architecture, graphic design, photography, and{" "}
-            <span className="font-display font-black text-paper">marketing.</span>
+            <span className="font-display font-black text-orange-500">marketing.</span>
           </p>
           <p className="text-lg text-paper/75">
             I build around proven frameworks like Donald Miller&apos;s StoryBrand.
@@ -232,7 +232,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 5. Offer */}
+      {/* 5. Offer
       <section className="bg-accent px-6 py-24 text-paper md:py-32">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
           <Eyebrow tone="paper">The offer</Eyebrow>
@@ -246,6 +246,7 @@ export default function Page() {
           <CTAButton variant="invert" />
         </div>
       </section>
+      */}
 
       {/* 6. Contact */}
       <section id="contact" className="bg-paper px-6 py-24 text-ink md:py-32">
@@ -254,7 +255,6 @@ export default function Page() {
           <h2 className="text-[clamp(2rem,1.5rem+2.8vw,3.5rem)] font-display font-black leading-[0.98] tracking-tighter">
             Tell me about your business.
           </h2>
-          <p className="text-ink/70">Three fields. That&apos;s it.</p>
           <ContactForm />
         </div>
       </section>
