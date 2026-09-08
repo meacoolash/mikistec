@@ -194,6 +194,48 @@ function CTAButton({
   )
 }
 
+function GoldText({
+  children,
+  as = "p",
+  size = "text-2xl",
+}: {
+  children: React.ReactNode
+  as?: "p" | "span"
+  size?: string
+}) {
+  const ref = useRef<HTMLElement>(null)
+  const [shine, setShine] = useState(false)
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false
+    if (reducedMotion) return
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShine(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.6 },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  const className = `text-gold font-display ${size} font-black leading-tight tracking-tight ${
+    shine ? "text-gold-shine" : ""
+  }`
+
+  const Tag = as
+  return (
+    <Tag ref={ref as React.RefObject<HTMLParagraphElement & HTMLSpanElement>} className={className}>
+      {children}
+    </Tag>
+  )
+}
+
 function Step({
   n,
   title,
@@ -326,7 +368,7 @@ export default function Page() {
           </h2>
           <p className="text-lg text-paper/75">
             25+ years across software architecture, graphic design, photography, and{" "}
-            <span className="font-display font-black text-orange-500">marketing.</span>
+            <GoldText as="span" size="text-lg">marketing.</GoldText>
           </p>
           <p className="text-lg text-paper/75">
             I build around proven frameworks like Donald Miller&apos;s{" "}
@@ -357,9 +399,7 @@ export default function Page() {
             If you want, you can use them,{" "}
             <span className="font-display font-black italic">but</span>
           </p>
-          <p className="font-display text-2xl font-black leading-tight tracking-tight text-orange-500">
-            I give you simplicity,
-          </p>
+          <GoldText>I give you simplicity,</GoldText>
           <p className="text-lg text-paper/85">
             while I take care of the details.
             <br />
