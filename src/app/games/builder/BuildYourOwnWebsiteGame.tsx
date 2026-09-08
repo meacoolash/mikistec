@@ -46,7 +46,7 @@ const THRESHOLDS: { count?: number; ms?: number; title: string; body: string }[]
   {
     count: 3,
     title: "Quick one.",
-    body: "Centered, or aligned left? Pick one — you can change it later. (You won’t.)",
+    body: "Centered, or aligned left? Pick one, you can change it later. (You won’t.)",
   },
   {
     count: 5,
@@ -61,7 +61,7 @@ const THRESHOLDS: { count?: number; ms?: number; title: string; body: string }[]
   {
     count: 7,
     title: "Almost forgot.",
-    body: "Meta title, meta description, alt text — SEO doesn’t write itself.",
+    body: "Meta title, meta description, alt text: SEO doesn’t write itself.",
   },
   {
     ms: 18000,
@@ -188,7 +188,7 @@ function BlockContent({ type }: { type: ElementType }) {
     case "popup":
       return (
         <div className="border border-ink/20 px-2 py-1.5 text-center text-[10px] leading-snug text-ink/60">
-          10% off — sign up now
+          10% off, sign up now
         </div>
       )
     case "newsletter":
@@ -397,7 +397,7 @@ export function BuildYourOwnWebsiteGame() {
             >
               {elements.length === 0 && (
                 <p className="absolute inset-0 flex items-center justify-center px-10 text-center text-sm text-ink/30">
-                  Drag a block onto the page — or just tap one.
+                  Drag a block onto the page, or just tap one.
                 </p>
               )}
               {elements.map((el) => (
@@ -415,7 +415,7 @@ export function BuildYourOwnWebsiteGame() {
                     >
                       ×
                     </button>
-                    <p className="font-display text-lg font-black leading-tight">Wait! Before you go —</p>
+                    <p className="font-display text-lg font-black leading-tight">Wait! Before you go...</p>
                     <p className="mt-2 text-xs text-ink/60">
                       Join the newsletter for 10% off your next headline.
                     </p>

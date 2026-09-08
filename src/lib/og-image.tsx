@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og"
 
 export const ogImageSize = { width: 1200, height: 630 }
 export const ogImageContentType = "image/png"
-export const ogImageAlt = "Miki Stec — You're good. Your website should be too."
+export const ogImageAlt = "Miki Stec | You're good. Your website should be too."
 
 const INK = "#14161A"
 const PAPER = "#F6F5F3"

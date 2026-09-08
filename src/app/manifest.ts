@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Miki Stec — You're good. Your website should be too.",
+    name: "Miki Stec | You're good. Your website should be too.",
     short_name: "Miki Stec",
     description:
       "I research your business, write it, build it, and launch it. You just say yes.",

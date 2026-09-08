@@ -9,13 +9,13 @@ export const metadata: Metadata = {
     "Flip the cards, find the iconic duos. Eight pairs, one of them is you.",
   alternates: { canonical: "/games/pexeso" },
   openGraph: {
-    title: "Let's play — Miki Stec",
+    title: "Let's play | Miki Stec",
     description:
       "Flip the cards, find the iconic duos. Eight pairs, one of them is you.",
     url: "/games/pexeso",
   },
   twitter: {
-    title: "Let's play — Miki Stec",
+    title: "Let's play | Miki Stec",
     description:
       "Flip the cards, find the iconic duos. Eight pairs, one of them is you.",
   },

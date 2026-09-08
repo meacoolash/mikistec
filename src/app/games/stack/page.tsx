@@ -5,18 +5,18 @@ import { Footer } from "../../sections/footer"
 import { StackGame } from "./StackGame"
 
 export const metadata: Metadata = {
-  title: "Stack the Website — a small experiment",
+  title: "Stack the Website: a small experiment",
   description:
     "Tap to drop each section into place. Land it clean, keep it standing, watch it get harder the taller it gets.",
   alternates: { canonical: "/games/stack" },
   openGraph: {
-    title: "Stack the Website — a small experiment — Miki Stec",
+    title: "Stack the Website: a small experiment | Miki Stec",
     description:
       "Tap to drop each section into place. Land it clean, keep it standing, watch it get harder the taller it gets.",
     url: "/games/stack",
   },
   twitter: {
-    title: "Stack the Website — a small experiment — Miki Stec",
+    title: "Stack the Website: a small experiment | Miki Stec",
     description:
       "Tap to drop each section into place. Land it clean, keep it standing, watch it get harder the taller it gets.",
   },

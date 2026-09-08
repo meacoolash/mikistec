@@ -5,18 +5,18 @@ import { Footer } from "../../sections/footer"
 import { BuildYourOwnWebsiteGame } from "./BuildYourOwnWebsiteGame"
 
 export const metadata: Metadata = {
-  title: "Build Your Own Website — a small experiment",
+  title: "Build Your Own Website: a small experiment",
   description:
     "Drag a few blocks onto a page and see how it feels to build your own website. Spoiler: you can. You just don't have to.",
   alternates: { canonical: "/games/builder" },
   openGraph: {
-    title: "Build Your Own Website — a small experiment — Miki Stec",
+    title: "Build Your Own Website: a small experiment | Miki Stec",
     description:
       "Drag a few blocks onto a page and see how it feels to build your own website. Spoiler: you can. You just don't have to.",
     url: "/games/builder",
   },
   twitter: {
-    title: "Build Your Own Website — a small experiment — Miki Stec",
+    title: "Build Your Own Website: a small experiment | Miki Stec",
     description:
       "Drag a few blocks onto a page and see how it feels to build your own website. Spoiler: you can. You just don't have to.",
   },

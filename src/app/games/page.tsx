@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   description: "A few small, playful experiments. Nothing you need. Just fun.",
   alternates: { canonical: "/games" },
   openGraph: {
-    title: "Games — Miki Stec",
+    title: "Games | Miki Stec",
     description: "A few small, playful experiments. Nothing you need. Just fun.",
     url: "/games",
   },
   twitter: {
-    title: "Games — Miki Stec",
+    title: "Games | Miki Stec",
     description: "A few small, playful experiments. Nothing you need. Just fun.",
   },
 }

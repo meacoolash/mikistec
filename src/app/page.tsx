@@ -348,34 +348,47 @@ export default function Page() {
       {/* 3. Why not Wix / AI */}
       <section className="bg-accent px-6 py-24 text-paper md:py-32">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
-          <Eyebrow tone="paper">Why not you</Eyebrow>
           <h2 className="text-[clamp(1.75rem,1.3rem+2vw,2.75rem)] font-display font-black leading-[1] tracking-tighter">
             Why not Wix?
           </h2>
           <p className="text-lg text-paper/85">
             Wix, Squarespace and AI are great tools.
             <br />
-            If you want, you can use them.
-          </p>
-          <p className="font-display text-2xl font-black italic leading-tight tracking-tight text-paper/85">
-            but
+            If you want, you can use them,{" "}
+            <span className="font-display font-black italic">but</span>
           </p>
           <p className="font-display text-2xl font-black leading-tight tracking-tight text-orange-500">
-            I give you simplicity.
+            I give you simplicity,
           </p>
           <p className="text-lg text-paper/85">
-            And yet, I take care of the complexity.
+            while I take care of the details.
             <br />
-            Websites are fast, SEO-optimized, and built for you.
+            Speed, SEO, OG images, favicons, analytics
             <br />
-            OG images, favicons, analytics, structured data.
-            <br />
-            <strong className="font-black">I take care of all the details.</strong>
+            and much more.
           </p>
         </div>
       </section>
 
-      {/* 4. How it works */}
+      {/* 4. Grow with me */}
+      <section className="bg-stone-200 px-6 py-24 text-ink md:py-32">
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
+          <h2 className="text-[clamp(2rem,1.5rem+2.8vw,3.5rem)] font-display font-black leading-[0.98] tracking-tighter">
+            Grow with me.
+          </h2>
+          <p className="text-lg text-ink/75">
+            CRM, email marketing, payments, booking, automation.
+            <br />
+            Your website is built to grow when you need it.
+          </p>
+          <p className="text-lg text-ink/75">
+            Ready to work with the tools and platforms you use today, and
+            whatever comes <em className="italic">next</em>.
+          </p>
+        </div>
+      </section>
+
+      {/* 5. How it works */}
       <section className="bg-paper px-6 py-24 text-ink md:py-32">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-10 text-center">
           <Eyebrow>How it works</Eyebrow>
@@ -384,7 +397,7 @@ export default function Page() {
           </h2>
           <div className="flex w-full flex-col gap-8">
             <Step n="1" title="I research you first">
-              Instagram, press, link-in-bio, directory listings — wherever your business already
+              Instagram, press, link-in-bio, directory listings, wherever your business already
               shows up. You don&apos;t need to send me anything. Optionally, you can.
             </Step>
             <Step n="2" title="You get a draft">

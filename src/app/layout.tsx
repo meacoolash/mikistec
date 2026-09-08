@@ -16,7 +16,7 @@ const body = IBM_Plex_Sans({
 
 const SITE_URL = "https://mikistec.com";
 const SITE_NAME = "Miki Stec";
-const TITLE_DEFAULT = "Miki Stec — You're good. Your website should be too.";
+const TITLE_DEFAULT = "Miki Stec | You're good. Your website should be too.";
 const DESCRIPTION =
   "I research your business, write it, build it, and launch it. You just say yes.";
 
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: TITLE_DEFAULT,
-    template: "%s — Miki Stec",
+    template: "%s | Miki Stec",
   },
   description: DESCRIPTION,
   keywords: [
