@@ -16,6 +16,12 @@ type Game = {
 
 const GAMES: Game[] = [
   {
+    href: "/games/stack",
+    title: "Stack the Website",
+    description:
+      "Tap to drop each section into place. Land it clean, keep it standing.",
+  },
+  {
     href: "/games/builder",
     title: "Build Your Own Website",
     description:
