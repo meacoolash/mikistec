@@ -329,7 +329,16 @@ export default function Page() {
             <span className="font-display font-black text-orange-500">marketing.</span>
           </p>
           <p className="text-lg text-paper/75">
-            I build around proven frameworks like Donald Miller&apos;s StoryBrand.
+            I build around proven frameworks like Donald Miller&apos;s{" "}
+            <a
+              href="https://storybrand.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-orange-500"
+            >
+              StoryBrand
+            </a>
+            .
             <br />
             Clear message, clear structure, clear action.
           </p>
@@ -348,15 +357,20 @@ export default function Page() {
             <br />
             If you want, you can use them.
           </p>
+          <p className="font-display text-2xl font-black italic leading-tight tracking-tight text-paper/85">
+            but
+          </p>
           <p className="font-display text-2xl font-black leading-tight tracking-tight text-orange-500">
             I give you simplicity.
           </p>
           <p className="text-lg text-paper/85">
-            And yet, I handle the complexity.
+            And yet, I take care of the complexity.
             <br />
-            Fast. SEO-optimized. Built for you — down to the last detail.
+            Websites are fast, SEO-optimized, and built for you.
             <br />
-            OG images, favicons, nothing left out.
+            OG images, favicons, analytics, structured data.
+            <br />
+            <strong className="font-black">I take care of all the details.</strong>
           </p>
         </div>
       </section>
