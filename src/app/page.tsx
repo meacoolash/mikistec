@@ -160,7 +160,7 @@ export default function Page() {
               src="/miki-portrait.jpg"
               alt="Miki Stec"
               width={320}
-              height={480}
+              height={456}
               priority
               className="h-auto w-64 object-cover md:w-72"
             />
