@@ -236,17 +236,19 @@ function GoldText({
   )
 }
 
-function QviksInfo() {
+function QviksInfo({
+  label = "QVIKS",
+  triggerClassName = "font-semibold underline underline-offset-4 hover:text-orange-500",
+}: {
+  label?: string
+  triggerClassName?: string
+}) {
   const [open, setOpen] = useState(false)
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="font-semibold underline underline-offset-4"
-      >
-        QVIKS
+      <button type="button" onClick={() => setOpen(true)} className={triggerClassName}>
+        {label}
       </button>
       {open && (
         <span
@@ -456,6 +458,14 @@ export default function Page() {
             <br />
             Clear message, clear structure, clear action.
           </p>
+          <p className="text-lg text-paper/75">
+            I am founder of{" "}
+            <QviksInfo
+              label="Qviks"
+              triggerClassName="underline underline-offset-4 hover:text-orange-500"
+            />
+            .
+          </p>
         </div>
       </section>
 
@@ -492,7 +502,7 @@ export default function Page() {
             <Step n="3" title="Grow">
               CRM, email marketing, payments, booking, automation — your website is ready to
               connect when you need it. Use the tools you already have or continue with{" "}
-              <QviksInfo />.
+              <QviksInfo triggerClassName="font-semibold underline underline-offset-4 hover:text-orange-500" />.
             </Step>
           </div>
         </div>
