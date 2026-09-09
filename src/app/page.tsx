@@ -236,6 +236,59 @@ function GoldText({
   )
 }
 
+function QviksInfo() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="font-semibold underline underline-offset-4"
+      >
+        QVIKS
+      </button>
+      {open && (
+        <span
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 z-40 flex items-center justify-center bg-ink/10 px-6 backdrop-blur-sm"
+        >
+          <span
+            onClick={(e) => e.stopPropagation()}
+            className="relative block w-full max-w-sm animate-[pop-in_0.2s_ease-out] border border-ink/10 bg-paper p-7 text-center shadow-xl"
+          >
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              aria-label="Close"
+              className="absolute right-2 top-2 text-2xl leading-none text-ink/40 hover:text-ink"
+            >
+              ×
+            </button>
+            <span className="block font-display text-lg font-black leading-tight text-ink">
+              QVIKS
+            </span>
+            <span className="mt-2 block text-sm text-ink/70">
+              An all-in-one solution for managing clients, payments and scheduling.
+              Another business of mine, fully integrated with your new website.
+            </span>
+            <a
+              href="https://qviks.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center justify-center gap-2 rounded-md bg-accent px-6 py-2.5 text-sm font-semibold text-paper transition-opacity hover:opacity-90"
+            >
+              Visit QVIKS <span aria-hidden="true">→</span>
+            </a>
+          </span>
+        </span>
+      )}
+    </>
+  )
+}
+
 function Step({
   n,
   title,
@@ -318,7 +371,7 @@ function ContactForm() {
       </div>
       <div>
         <label htmlFor="business" className="mb-1 block text-xs uppercase tracking-wide text-ink/50">
-          What&apos;s your business?
+          Tell me about your business
         </label>
         <input
           id="business"
@@ -326,7 +379,7 @@ function ContactForm() {
           type="text"
           required
           className="w-full border-b border-ink/25 bg-transparent py-2 text-ink placeholder:text-ink/30 focus:border-accent focus:outline-none"
-          placeholder="e.g. a bakery, a design studio, a personal brand"
+          placeholder="e.g. bakery in Paris @mysweetdonut"
         />
       </div>
       <button
@@ -436,10 +489,10 @@ export default function Page() {
               We adjust it together, then we go live. I take care of the domain too.
               Nothing to learn. Nothing for you to manage.
             </Step>
-            <Step n="3" title="Grow with me">
-              CRM, email marketing, payments, booking, automation, your website is ready to
-              connect when you need it. Ready to work with the tools and platforms you use today,
-              and whatever comes next.
+            <Step n="3" title="Grow">
+              CRM, email marketing, payments, booking, automation — your website is ready to
+              connect when you need it. Use the tools you already have or continue with{" "}
+              <QviksInfo />.
             </Step>
           </div>
         </div>
