@@ -1,10 +1,10 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { css } from "./styles";
 import { Programme } from "./itinerary2/Programme";
+import { ApplyForm } from "./_ApplyForm";
+import { HeroHeadline } from "./_HeroHeadline";
+import { Reveal } from "./_Reveal";
 
 const IMG = "/draft/return-to-roots";
 
@@ -47,62 +47,10 @@ function Eye({ children }: { children: React.ReactNode }) {
 }
 
 export default function ReturnToRoots2() {
-  const [sent, setSent] = useState(false);
-  // hero headline: the line settles in, rests, lifts away, and the name arrives
-  const [stage, setStage] = useState<"idle" | "line" | "out" | "brand">("idle");
-
-  useEffect(() => {
-    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setStage("brand");
-      return;
-    }
-    const t = [
-      window.setTimeout(() => setStage("line"), 400),
-      window.setTimeout(() => setStage("out"), 3600),
-      window.setTimeout(() => setStage("brand"), 3600),
-    ];
-    return () => t.forEach(window.clearTimeout);
-  }, []);
-
-  useEffect(() => {
-    const els = Array.from(document.querySelectorAll<HTMLElement>(".r2-rev"));
-    const reveal = (el: Element) => el.classList.add("in");
-
-    if (!("IntersectionObserver" in window)) {
-      els.forEach(reveal);
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      (es) =>
-        es.forEach((e) => {
-          if (e.isIntersecting) {
-            reveal(e.target);
-            io.unobserve(e.target);
-          }
-        }),
-      { rootMargin: "0px 0px -10% 0px", threshold: 0 }
-    );
-
-    els.forEach((el) => {
-      // anything already on screen at mount shows straight away
-      const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight && r.bottom > 0) reveal(el);
-      else io.observe(el);
-    });
-
-    // safety net: never leave a section invisible
-    const t = window.setTimeout(() => els.forEach(reveal), 2500);
-
-    return () => {
-      io.disconnect();
-      window.clearTimeout(t);
-    };
-  }, []);
-
   return (
     <div className="r2">
       <style dangerouslySetInnerHTML={{ __html: css }} />
+      <Reveal />
 
       {/* ---------- HERO ---------- */}
       <header className="r2-hero">
@@ -124,16 +72,7 @@ export default function ReturnToRoots2() {
             <Eye>Kathmandu · October 2026</Eye>
           </div>
 
-          <h1 aria-label="Return to Roots">
-            <span className="r2-lines">
-              <span data-show={stage === "line" ? "true" : stage === "idle" ? "false" : "gone"} aria-hidden>
-                {LINE}
-              </span>
-              <span data-show={stage === "brand"} aria-hidden>
-                {BRAND}
-              </span>
-            </span>
-          </h1>
+          <HeroHeadline line={LINE} brand={BRAND} />
 
           <p className="r2-p r2-fade" style={{ animationDelay: "1.25s", opacity: 0 }}>
             Five days in Nepal to set it down — and find your own way back.
@@ -255,7 +194,11 @@ export default function ReturnToRoots2() {
                   alt={g.alt}
                   width={1280}
                   height={1280}
-                  sizes="(max-width: 720px) 100vw, 50vw"
+                  sizes={
+                    g.big
+                      ? "(max-width: 699px) 100vw, (max-width: 1240px) 48vw, 583px"
+                      : "(max-width: 699px) 50vw, (max-width: 1240px) 24vw, 284px"
+                  }
                 />
               </figure>
             ))}
@@ -316,47 +259,7 @@ export default function ReturnToRoots2() {
       {/* ---------- CTA ---------- */}
       <section className="r2-band" id="apply">
         <div className="r2-mid r2-rev" style={{ maxWidth: 560 }}>
-          {sent ? (
-            <>
-              <h2 className="r2-h-sm">Your place is noted.</h2>
-              <p className="r2-p">We write back within a day or two, with everything.</p>
-            </>
-          ) : (
-            <>
-              <Eye>One last thing</Eye>
-              <h2 className="r2-h">Come home to yourself.</h2>
-              <form
-                className="r2-form"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSent(true);
-                }}
-              >
-                <div>
-                  <label htmlFor="r2-name">Name</label>
-                  <input id="r2-name" name="name" required placeholder="Your name" autoComplete="name" />
-                </div>
-                <div>
-                  <label htmlFor="r2-email">Email</label>
-                  <input
-                    id="r2-email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="you@email.com"
-                    autoComplete="email"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="r2-why">What brings you here?</label>
-                  <textarea id="r2-why" name="why" placeholder="One line is enough." />
-                </div>
-                <button className="r2-btn" type="submit" style={{ justifySelf: "start", marginTop: 8 }}>
-                  Join <span aria-hidden>→</span>
-                </button>
-              </form>
-            </>
-          )}
+          <ApplyForm />
         </div>
       </section>
 
