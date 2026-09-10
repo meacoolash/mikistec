@@ -280,6 +280,7 @@ function QviksInfo({
               href="https://qviks.com"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
               className="mt-4 inline-flex items-center justify-center gap-2 rounded-md bg-accent px-6 py-2.5 text-sm font-semibold text-paper transition-opacity hover:opacity-90"
             >
               Visit QVIKS <span aria-hidden="true">→</span>
