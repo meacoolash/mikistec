@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { useForm, ValidationError } from "@formspree/react"
+import { useContactForm, Honeypot } from "@/lib/use-contact-form"
 import { Header } from "./sections/header"
 import { Footer } from "./sections/footer"
 
@@ -315,7 +315,7 @@ function Step({
 }
 
 function ContactForm() {
-  const [state, handleSubmit] = useForm("xldgqdnz")
+  const state = useContactForm("landing")
 
   if (state.succeeded) {
     return (
@@ -344,7 +344,8 @@ function ContactForm() {
           Tell me about your business.
         </h2>
       </div>
-      <form onSubmit={handleSubmit} className="flex w-full flex-col gap-5 text-left">
+      <form onSubmit={state.handleSubmit} className="flex w-full flex-col gap-5 text-left">
+      <Honeypot />
       <div>
         <label htmlFor="name" className="mb-1 block text-xs uppercase tracking-wide text-ink/50">
           Name
@@ -370,7 +371,6 @@ function ContactForm() {
           className="w-full border-b border-ink/25 bg-transparent py-2 text-ink placeholder:text-ink/30 focus:border-accent focus:outline-none"
           placeholder="you@yourbusiness.com"
         />
-        <ValidationError prefix="Email" field="email" errors={state.errors} className="mt-1 text-xs text-accent" />
       </div>
       <div>
         <label htmlFor="business" className="mb-1 block text-xs uppercase tracking-wide text-ink/50">
@@ -378,7 +378,7 @@ function ContactForm() {
         </label>
         <input
           id="business"
-          name="business"
+          name="message"
           type="text"
           required
           className="w-full border-b border-ink/25 bg-transparent py-2 text-ink placeholder:text-ink/30 focus:border-accent focus:outline-none"
@@ -392,6 +392,7 @@ function ContactForm() {
       >
         {CTA_LABEL} <span aria-hidden="true">→</span>
       </button>
+      {state.error && <p role="alert" className="text-sm text-accent">{state.error}</p>}
       </form>
     </>
   )

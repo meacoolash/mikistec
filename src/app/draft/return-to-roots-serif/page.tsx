@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useForm, ValidationError } from "@formspree/react"
+import { useContactForm, Honeypot } from "@/lib/use-contact-form"
 import { Nav, Footer, Serif } from "./_ui"
 
 function Eyebrow({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -72,7 +72,7 @@ const GALLERY = [
 ]
 
 function ApplyForm() {
-  const [state, handleSubmit] = useForm("xldgqdnz")
+  const state = useContactForm("return-to-roots")
 
   if (state.succeeded) {
     return (
@@ -91,7 +91,8 @@ function ApplyForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full flex-col gap-5 text-left">
+    <form onSubmit={state.handleSubmit} className="flex w-full flex-col gap-5 text-left">
+      <Honeypot />
       <div>
         <label htmlFor="name" className="mb-1 block text-xs uppercase tracking-wide text-[#F7F1E6]/50">
           Name
@@ -117,7 +118,6 @@ function ApplyForm() {
           className="w-full border-b border-[#F7F1E6]/25 bg-transparent py-2 text-[#F7F1E6] placeholder:text-[#F7F1E6]/30 focus:border-[#C9A24B] focus:outline-none"
           placeholder="you@email.com"
         />
-        <ValidationError prefix="Email" field="email" errors={state.errors} className="mt-1 text-xs text-[#C9A24B]" />
       </div>
       <div>
         <label htmlFor="message" className="mb-1 block text-xs uppercase tracking-wide text-[#F7F1E6]/50">
@@ -138,6 +138,7 @@ function ApplyForm() {
       >
         Request Your Spot <span aria-hidden="true">→</span>
       </button>
+      {state.error && <p role="alert" className="text-sm text-[#C9A24B]">{state.error}</p>}
     </form>
   )
 }

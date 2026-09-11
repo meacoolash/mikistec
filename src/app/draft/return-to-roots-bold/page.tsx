@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useForm, ValidationError } from "@formspree/react"
+import { useContactForm, Honeypot } from "@/lib/use-contact-form"
 import { Eyebrow, GoldText, FadeIn, CTAButton, Nav, Footer } from "./_ui"
 
 function Step({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
@@ -18,7 +18,7 @@ function Step({ n, title, children }: { n: string; title: string; children: Reac
 }
 
 function ApplyForm() {
-  const [state, handleSubmit] = useForm("xldgqdnz")
+  const state = useContactForm("return-to-roots")
 
   if (state.succeeded) {
     return (
@@ -32,7 +32,8 @@ function ApplyForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full flex-col gap-5 text-left">
+    <form onSubmit={state.handleSubmit} className="flex w-full flex-col gap-5 text-left">
+      <Honeypot />
       <div>
         <label htmlFor="name" className="mb-1 block text-xs uppercase tracking-wide text-ink/50">
           Name
@@ -58,7 +59,6 @@ function ApplyForm() {
           className="w-full border-b border-ink/25 bg-transparent py-2 text-ink placeholder:text-ink/30 focus:border-accent focus:outline-none"
           placeholder="you@email.com"
         />
-        <ValidationError prefix="Email" field="email" errors={state.errors} className="mt-1 text-xs text-accent" />
       </div>
       <button
         type="submit"
@@ -67,6 +67,7 @@ function ApplyForm() {
       >
         I&apos;m in <span aria-hidden="true">→</span>
       </button>
+      {state.error && <p role="alert" className="text-sm text-accent">{state.error}</p>}
     </form>
   )
 }
