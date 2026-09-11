@@ -8,6 +8,9 @@ import { Reveal } from "./_Reveal";
 
 const IMG = "/draft/return-to-roots";
 
+/* Marks the page as a demo: a badge in the hero and a switched-off form. Flip to go live. */
+const DEMO = true;
+
 const LINE = "You’ve carried it\nlong enough.";
 const BRAND = "Return\nto Roots";
 
@@ -91,6 +94,8 @@ export default function ReturnToRoots2() {
         </div>
         <div className="r2-hero-scrim" />
         <div className="r2-breath" aria-hidden />
+
+        {DEMO && <p className="r2-demo-tag">Demo · not a live page</p>}
 
         <div className="r2-hero-in">
           <div className="r2-fade" style={{ animationDelay: "1.1s" }}>
@@ -299,7 +304,7 @@ export default function ReturnToRoots2() {
       {/* ---------- CTA ---------- */}
       <section className="r2-band" id="apply">
         <div className="r2-mid r2-rev" style={{ maxWidth: 560 }}>
-          <ApplyForm />
+          <ApplyForm demo={DEMO} />
         </div>
       </section>
 

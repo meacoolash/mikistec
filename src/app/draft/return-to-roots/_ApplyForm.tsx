@@ -2,7 +2,8 @@
 
 import { useContactForm, Honeypot } from "@/lib/use-contact-form";
 
-export function ApplyForm() {
+/** `demo` stamps the form and blocks submitting, so the preview can't send real enquiries. */
+export function ApplyForm({ demo = false }: { demo?: boolean }) {
   const state = useContactForm("return-to-roots");
 
   if (state.succeeded) {
@@ -18,7 +19,15 @@ export function ApplyForm() {
     <>
       <p className="r2-eye">One last thing</p>
       <h2 className="r2-h">Come home to yourself.</h2>
-      <form className="r2-form" onSubmit={state.handleSubmit}>
+      <form
+        className={demo ? "r2-form is-demo" : "r2-form"}
+        onSubmit={demo ? (e) => e.preventDefault() : state.handleSubmit}
+      >
+        {demo && (
+          <div className="r2-stamp" aria-hidden>
+            <span>Demo</span>
+          </div>
+        )}
         <Honeypot />
         <div>
           <label htmlFor="r2-name">Name</label>
@@ -42,11 +51,13 @@ export function ApplyForm() {
         <button
           className="r2-btn"
           type="submit"
-          disabled={state.submitting}
-          style={{ justifySelf: "start", marginTop: 8, opacity: state.submitting ? 0.5 : 1 }}
+          disabled={demo || state.submitting}
+          title={demo ? "This is a demo — the form is switched off" : undefined}
+          style={{ justifySelf: "start", marginTop: 8, opacity: demo || state.submitting ? 0.5 : 1 }}
         >
           Join <span aria-hidden>→</span>
         </button>
+        {demo && <p className="r2-note">Demo — this form doesn&apos;t send anything.</p>}
         {state.error && (
           <p role="alert" className="r2-p">
             {state.error}

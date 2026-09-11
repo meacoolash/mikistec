@@ -230,6 +230,29 @@ export const css = `
 .r2-form input:focus, .r2-form textarea:focus { border-color: var(--saffron); }
 .r2-form textarea { resize: vertical; min-height: 80px; }
 
+/* ---------- DEMO MARKERS ---------- */
+.r2-demo-tag {
+  position: absolute; top: 22px; left: 22px; z-index: 5;
+  font-size: 10.5px; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 400;
+  color: var(--saffron-2); border: 1px solid rgba(224,164,92,0.6); border-radius: 999px;
+  padding: 7px 14px; background: rgba(18,24,21,0.45); backdrop-filter: blur(6px);
+}
+.r2-form.is-demo { position: relative; }
+.r2-form .r2-note { margin-top: 0; }
+.r2-form .r2-btn:disabled { cursor: not-allowed; }
+.r2-form.is-demo .r2-btn:disabled:hover { transform: none; background: var(--saffron); color: var(--night); }
+.r2-stamp {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  display: grid; place-items: center; overflow: hidden;
+}
+.r2-stamp span {
+  transform: rotate(-16deg);
+  font-family: var(--rr-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(3.6rem, 2rem + 8vw, 6.4rem); font-weight: 600; line-height: 1;
+  letter-spacing: 0.2em; text-transform: uppercase; padding: 0.12em 0.2em 0.12em 0.4em;
+  color: rgba(198,128,47,0.4); border: 4px solid rgba(198,128,47,0.4); border-radius: 10px;
+}
+
 /* ---------- REVEAL ---------- */
 .r2-rev { opacity: 0; transform: translateY(26px);
   transition: opacity 1s ease, transform 1s cubic-bezier(.16,1,.3,1); }
