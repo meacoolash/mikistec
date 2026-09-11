@@ -308,15 +308,14 @@ export default function ReturnToRoots2() {
           Return to Roots
         </div>
         <div style={{ marginTop: 10 }}>Kathmandu, Nepal · October 15–19, 2026</div>
-        <div style={{ marginTop: 18 }}>
-          <Link href="/draft/return-to-roots-editorial">The editorial concept</Link>
-        </div>
       </footer>
 
-      <div className="r2-draft">
-        <span>Draft 2 · concept two</span>
+      <div className="r2-credit">
         <span>
-          Built by <Link href="/">Miki Stec</Link>
+          Built by <Link href="/">Miki Stec</Link> · Ready for{" "}
+          <a href="https://qviks.com" target="_blank" rel="noopener noreferrer">
+            QVIKS
+          </a>
         </span>
       </div>
     </div>

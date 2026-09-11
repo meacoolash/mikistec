@@ -240,11 +240,11 @@ export const css = `
 .r2-foot { background: var(--night); color: rgba(239,234,225,0.55); padding: 46px 24px 64px;
   text-align: center; font-size: 12px; letter-spacing: 0.14em; }
 .r2-foot a { color: var(--saffron); text-decoration: none; }
-.r2-draft {
+.r2-credit {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; background: #0B0F0D;
   color: rgba(239,234,225,0.62); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
-  padding: 9px 20px; display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  padding: 9px 20px; display: flex; justify-content: flex-end; gap: 14px; flex-wrap: wrap;
 }
-.r2-draft a { color: var(--saffron); }
+.r2-credit a { color: var(--saffron); }
 
 `;
