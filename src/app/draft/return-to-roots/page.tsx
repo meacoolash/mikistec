@@ -53,7 +53,7 @@ const HOSTS: {
     ],
   },
   {
-    name: "Sevinç Meşeci",
+    name: "Joy Sevinç Meşeci",
     role: "Somatic therapist · Reparenting coach · Yin yoga",
     bio: [
       "Sevinç trained as an actor at the Haliç University conservatory and at LAMDA in London, then went back to London for somatic therapy teacher training. She founded Oyo Studyo in Istanbul and now teaches from Bali.",
@@ -298,6 +298,24 @@ export default function ReturnToRoots2() {
           >
             The full itinerary
           </Link>
+        </div>
+      </section>
+
+      {/* ---------- PRICE ---------- */}
+      <section className="r2-band r2-saff">
+        <div className="r2-mid r2-rev">
+          <Eye>The investment</Eye>
+          <p className="r2-price">
+            1,500<span>USD</span>
+          </p>
+          <p className="r2-p" style={{ opacity: 0.8 }}>
+            Per person, for the full five days in Kathmandu.
+          </p>
+          <div className="r2-cta-row">
+            <a className="r2-btn" href="#apply">
+              Join <span aria-hidden>→</span>
+            </a>
+          </div>
         </div>
       </section>
 

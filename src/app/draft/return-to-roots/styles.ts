@@ -41,6 +41,17 @@ export const css = `
 }
 .r2-night .r2-eye { color: var(--saffron); }
 .r2-saff .r2-eye { color: rgba(18,24,21,0.68); }
+.r2-saff .r2-btn { background: var(--night); color: var(--bone); border-color: var(--night); }
+.r2-saff .r2-btn:hover { background: transparent; color: var(--night); }
+
+/* price — digits stay in the sans */
+.r2-price {
+  font-family: var(--rr-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(4.2rem, 2rem + 9vw, 8.4rem); font-weight: 300; line-height: 0.95;
+  letter-spacing: -0.04em; font-variant-numeric: tabular-nums;
+}
+.r2-price span { font-size: 0.22em; font-weight: 400; letter-spacing: 0.24em; margin-left: 0.9em;
+  vertical-align: 0.35em; }
 .r2-eye i { font-style: normal; opacity: 0.75; }
 
 /* buttons */
