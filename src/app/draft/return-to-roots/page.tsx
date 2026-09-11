@@ -35,6 +35,31 @@ const STEPS = [
   { n: "3", h: "Arrive", p: "From the welcome tea to the last blessing, the week is held for you." },
 ];
 
+const HOSTS: {
+  name: string;
+  role: string;
+  bio: string[];
+  link?: { href: string; label: string };
+}[] = [
+  {
+    name: "Dr. Pandey",
+    role: "Ayurvedic physician · Panchakarma specialist · Meditation guide",
+    bio: [
+      "An Ayurvedic physician who bridges ancient wellness traditions with modern holistic health. A Fellowship in Kerala Panchakarma sits behind the work: deep detoxification, rejuvenation therapies and root-cause healing.",
+      "Because health is body and mind together, Dr. Pandey pairs scientific Ayurvedic diagnosis with traditional Kerala therapies and mindfulness — and, as a certified meditation teacher, guides gentle, transformative practices that carry the physical healing further. On retreat, that becomes a sanctuary for detox, stress relief and renewal.",
+    ],
+  },
+  {
+    name: "Sevinç Meşeci",
+    role: "Somatic therapist · Reparenting coach · Yin yoga",
+    bio: [
+      "Sevinç trained as an actor at the Haliç University conservatory and at LAMDA in London, then went back to London for somatic therapy teacher training. She founded Oyo Studyo in Istanbul and now teaches from Bali.",
+      "Her work is trauma-informed and body-first — somatic therapy, reparenting, the Alexander Technique and yin yoga — to help the nervous system settle and reopen the conversation with your younger self.",
+    ],
+    link: { href: "https://joymeseci.com/", label: "joymeseci.com" },
+  },
+];
+
 const FACTS = [
   { k: "Dates", v: "Oct 15–19, 2026" },
   { k: "Length", v: "4 nights, 5 days" },
@@ -131,8 +156,7 @@ export default function ReturnToRoots2() {
       {/* ---------- PLAN ---------- */}
       <section className="r2-band">
         <div className="r2-mid r2-rev">
-          <h2 className="r2-h">How</h2>
-          <Eye>Three steps</Eye>
+          <h2 className="r2-h">Return to Roots in three steps</h2>
           <div className="r2-steps">
             {STEPS.map((s) => (
               <div className="r2-step" key={s.n}>
@@ -222,13 +246,29 @@ export default function ReturnToRoots2() {
         </div>
       </section>
 
-      {/* ---------- STAKES ---------- */}
-      <section className="r2-band r2-saff">
-        <div className="r2-mid r2-rev">
-          <h2 className="r2-h">Or October passes like the last one.</h2>
-          <p className="r2-p" style={{ opacity: 0.78 }}>
-            Same weeks, same weight, same promise to rest — moved quietly to next year.
-          </p>
+      {/* ---------- HOSTS ---------- */}
+      <section className="r2-band">
+        <div className="r2-wide r2-rev">
+          <div className="r2-mid">
+            <Eye>Who holds the week</Eye>
+            <h2 className="r2-h-sm">Meet your guides.</h2>
+          </div>
+          <div className="r2-hosts">
+            {HOSTS.map((h) => (
+              <article className="r2-host" key={h.name}>
+                <h3>{h.name}</h3>
+                <p className="role">{h.role}</p>
+                {h.bio.map((b) => (
+                  <p key={b}>{b}</p>
+                ))}
+                {h.link && (
+                  <a className="r2-link" href={h.link.href} target="_blank" rel="noopener noreferrer">
+                    {h.link.label} <span aria-hidden>↗</span>
+                  </a>
+                )}
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

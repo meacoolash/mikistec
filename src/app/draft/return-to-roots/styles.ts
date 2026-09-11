@@ -166,6 +166,17 @@ export const css = `
 .r2-word h3 { font-size: clamp(2.2rem, 1.4rem + 3.2vw, 3.6rem); line-height: 1; }
 .r2-word p { opacity: 0.66; line-height: 1.65; font-size: 16.5px; max-width: 48ch; }
 
+/* ---------- HOSTS ---------- */
+.r2-hosts { display: grid; gap: 56px; margin-top: clamp(48px, 6vw, 80px); text-align: left; }
+@media (min-width: 900px) { .r2-hosts { grid-template-columns: 1fr 1fr; gap: 72px; } }
+.r2-host { display: flex; flex-direction: column; align-items: flex-start; gap: 16px;
+  padding-top: 30px; border-top: 1px solid rgba(18,24,21,0.28); }
+.r2-host h3 { font-size: clamp(2.2rem, 1.6rem + 2.2vw, 3.3rem); line-height: 1; }
+.r2-host .role { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.72;
+  line-height: 1.6; margin-bottom: 6px; }
+.r2-host p:not(.role) { font-size: 16.5px; line-height: 1.65; opacity: 0.84; max-width: 52ch; }
+.r2-host .r2-link { margin-top: 6px; opacity: 0.8; }
+
 /* ---------- GALLERY ---------- */
 .r2-gal-wrap { max-width: 1180px; margin: 0 auto; text-align: center; }
 .r2-gal-wrap .r2-eye { margin-bottom: 28px; }
