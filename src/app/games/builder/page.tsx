@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { Header } from "../../sections/header"
 import { Footer } from "../../sections/footer"
 import { BuildYourOwnWebsiteGame } from "./BuildYourOwnWebsiteGame"
@@ -25,16 +24,10 @@ export const metadata: Metadata = {
 export default function BuilderGamePage() {
   return (
     <>
-      <Header />
+      <Header playLabel="All games" playHref="/games" />
       <main className="font-body">
         <section className="bg-paper px-6 py-20 text-ink md:py-28">
           <div className="mx-auto mb-14 flex max-w-2xl flex-col items-center gap-6 text-center">
-            <Link
-              href="/games"
-              className="text-xs text-ink/40 hover:text-ink/70"
-            >
-              ← All games
-            </Link>
             <h1 className="text-[clamp(2.25rem,1.5rem+3.5vw,4rem)] font-display font-black leading-[0.98] tracking-tighter">
               Build your own website.
             </h1>
