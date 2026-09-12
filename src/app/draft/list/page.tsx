@@ -12,6 +12,30 @@ type Entry = {
 
 const PROJECTS: { project: string; meta: string; entries: Entry[] }[] = [
   {
+    project: "Manish Pole",
+    meta: "Yoga, wisdom & meditation teacher · Ubud, Bali · dhyāna meditation community",
+    entries: [
+      {
+        name: "Manish Pole",
+        href: "/draft/manish-pole",
+        status: "Main",
+        note: "Minimal one-pager for the teacher himself: bone / ink / dusty blue, full-bleed hero, the Sunday dhyāna sit as the single call to action. Research and sources in draft/manish/.",
+      },
+    ],
+  },
+  {
+    project: "Experiments",
+    meta: "Small playable things · physics, type, interaction",
+    entries: [
+      {
+        name: "Spacetime Sushi",
+        href: "/draft/spacetime-sushi",
+        status: "Game",
+        note: "Rovelli's block of spacetime as a sushi roll. Tilt the knife to change your speed and watch simultaneity, then the order of events, fall apart. Five cuts, ending at the light cone.",
+      },
+    ],
+  },
+  {
     project: "Return to Roots",
     meta: "Reparenting, Ayurveda & Somatic Retreat · Kathmandu · 15–19 Oct 2026",
     entries: [
