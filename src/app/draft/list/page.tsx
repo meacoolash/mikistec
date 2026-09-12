@@ -21,12 +21,24 @@ const PROJECTS: { project: string; meta: string; entries: Entry[] }[] = [
         status: "Main",
         note: "Minimal one-pager for the teacher himself: bone / ink / dusty blue, full-bleed hero. Every event and every editable line sits in content.ts, shaped like the QVIKS event feed — the page holds no dates of its own. Research and sources in draft/manish/.",
       },
+      {
+        name: "Manish Pole — indie",
+        href: "/draft/manish-pole-indie",
+        status: "Concept",
+        note: "Riso-print zine take on the same content: paper grain, hard offset shadows, a breathing circle you can pause and breathe with, a ticker, drag-around photographs and scroll reveals. Reads from the same content.ts.",
+      },
     ],
   },
   {
     project: "Experiments",
     meta: "Small playable things · physics, type, interaction",
     entries: [
+      {
+        name: "Lineage",
+        href: "/draft/lineage",
+        status: "Map",
+        note: "Who read whom. Sixty philosophers, physicists and mathematicians on one timeline, ~130 hand-picked links: taught, read, argued against, worked alongside. Hover lights up a person's whole neighbourhood; the whole dataset sits in data.ts.",
+      },
       {
         name: "Spacetime Sushi",
         href: "/draft/spacetime-sushi",
