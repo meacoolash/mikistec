@@ -19,7 +19,7 @@ const PROJECTS: { project: string; meta: string; entries: Entry[] }[] = [
         name: "Manish Pole",
         href: "/draft/manish-pole",
         status: "Main",
-        note: "Minimal one-pager for the teacher himself: bone / ink / dusty blue, full-bleed hero, the Sunday dhyāna sit as the single call to action. Research and sources in draft/manish/.",
+        note: "Minimal one-pager for the teacher himself: bone / ink / dusty blue, full-bleed hero. Every event and every editable line sits in content.ts, shaped like the QVIKS event feed — the page holds no dates of its own. Research and sources in draft/manish/.",
       },
     ],
   },
