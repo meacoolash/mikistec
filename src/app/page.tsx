@@ -426,9 +426,9 @@ export default function Page() {
               src="/miki-portrait.jpg"
               alt="Miki Stec"
               width={320}
-              height={456}
+              height={320}
               priority
-              className="h-auto w-64 object-cover md:w-72"
+              className="h-auto w-44 object-cover md:w-52"
             />
           </div>
           <CTAButton />
