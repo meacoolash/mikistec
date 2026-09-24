@@ -12,6 +12,18 @@ type Entry = {
 
 const PROJECTS: { project: string; meta: string; entries: Entry[] }[] = [
   {
+    project: "mikistec.com",
+    meta: "Own site · AI agents & websites",
+    entries: [
+      {
+        name: "mikistec v2",
+        href: "/v2-draft",
+        status: "Concept",
+        note: "Next version of the homepage, modelled on matteoc.com: all IBM Plex Mono, grey / black / blue, boxed strips, orange scribble. Leads with AI FOMO, then two paths: learn to build your own website and agents with me, or have me build the website. Copy in content.ts; form switched off.",
+      },
+    ],
+  },
+  {
     project: "Manish Pole",
     meta: "Yoga, wisdom & meditation teacher · Ubud, Bali · dhyāna meditation community",
     entries: [
