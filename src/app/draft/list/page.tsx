@@ -21,6 +21,12 @@ const PROJECTS: { project: string; meta: string; entries: Entry[] }[] = [
         status: "Concept",
         note: "Next version of the homepage, modelled on matteoc.com: all IBM Plex Mono, grey / black / blue, boxed strips, orange scribble. Leads with AI FOMO, then two paths: learn to build your own website and agents with me, or have me build the website. Copy in content.ts; form switched off.",
       },
+      {
+        name: "mikistec v3",
+        href: "/v3-draft",
+        status: "Concept",
+        note: "Same page as v2, warmer and a bit indie so it is not a 1:1 of matteoc.com: grained cream paper, ember hero and card, deep-green scribble, sage box, hard offset shadows, sentence-case bold headings, a tilted FOMO sticker. Still all IBM Plex Mono. Copy in content.ts; form switched off.",
+      },
     ],
   },
   {
