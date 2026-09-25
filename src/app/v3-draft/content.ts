@@ -6,8 +6,12 @@
 export const HERO = {
   eyebrow: "AI agents & websites that sell",
   title: "Everyone around you is building with AI. Are you?",
-  lead:
-    "I'm Miki. I research your business, write it, build it, and launch it. You just say yes. Or I teach you to build your own website and your own AI agents, from FOMO to shipping.",
+  /* The middle part is highlighted on the page. */
+  lead: [
+    "I'm Miki. I research your business, write it, build it, and launch it. ",
+    "You just say yes.",
+    " Or I teach you to build your own website and your own AI agents, from FOMO to shipping.",
+  ],
   cta: "Get me started",
 };
 
@@ -26,8 +30,7 @@ export const PROBLEM = {
     "The gap between you and them isn't talent. It isn't a computer science degree. It's one afternoon of doing it next to someone who already does it every day.",
     "I've built software for 25+ years, and I build with AI agents every day. This page included.",
   ],
-  primary: "Show me the two ways",
-  secondary: "Let's talk",
+  cta: "Let's talk",
 };
 
 export type Path = {
@@ -36,6 +39,8 @@ export type Path = {
   label: string;
   title: string;
   body: string;
+  /* Optional line shown on its own, highlighted. */
+  highlight?: string;
   points: string[];
   cta: string;
   tone: "blue" | "ink" | "sand";
@@ -53,7 +58,7 @@ export const PATHS: Path[] = [
       "Your own website, built and live",
       "An agent that researches for you",
       "An agent that drafts your emails and posts",
-      "The habit: how to hand work to an agent",
+      "My skills: hand-curated from real projects, so your AI never forgets what matters",
     ],
     cta: "Teach me",
     tone: "blue",
@@ -64,7 +69,8 @@ export const PATHS: Path[] = [
     label: "Done for you",
     title: "You say yes. I build it.",
     body:
-      "No time to learn right now? I research your business, write it, build it and launch it. Instagram, LinkedIn, Google: wherever you already show up. You don't need to send me anything.",
+      "No time to learn right now? I research your business, write it, build it and launch it. Instagram, LinkedIn, Google: wherever you already show up.",
+    highlight: "You don't need to send me anything.",
     points: [
       "Researched first draft, built for real",
       "Copywriting included",
@@ -76,28 +82,22 @@ export const PATHS: Path[] = [
   },
 ];
 
-export const GROW = {
-  label: "Then grow",
-  body:
-    "CRM, payments, booking, email: your website is ready to connect when you need it. Use the tools you already have, or continue with QVIKS, another business of mine.",
-  link: { label: "Visit QVIKS", href: "https://qviks.com" },
-};
-
 export const STEPS = [
   {
-    n: "01",
-    title: "A short call",
-    body: "You tell me what you do and where you're stuck. I tell you honestly which path makes sense.",
+    n: "1",
+    title: "Say yes",
+    body: "I research your business first. Then we'll have a quick chat about ideas, concepts and your path to success. The concept is",
+    highlight: "free of charge.",
   },
   {
-    n: "02",
-    title: "Pick your path",
-    body: "Learn it yourself with me, or have me build it. You can start with one and switch later.",
+    n: "2",
+    title: "Get it done",
+    body: "Together, or I do it for you. Depends on the path you choose.",
   },
   {
-    n: "03",
-    title: "Ship something real",
-    body: "Not slides, not theory. A live website, a working agent. Something you can point at.",
+    n: "3",
+    title: "Grow",
+    body: "Start small and go live. Then add the next piece when you need it: a new page, another agent, booking, payments.",
   },
 ];
 
@@ -109,6 +109,12 @@ export const ABOUT = {
     "Founder of QVIKS: clients, payments and scheduling for small service businesses.",
     "I work with AI agents every day, on my own businesses first.",
   ],
+};
+
+export const SUPPORT = {
+  title: "Real support. From a real person.",
+  body:
+    "I'll set up an AI chatbot for your customers. But when you need help, you don't get a bot. You get me: I answer fast and sort out whatever comes up.",
 };
 
 export const FAQ = [
@@ -126,18 +132,18 @@ export const FAQ = [
   },
   {
     q: "How much does it cost?",
-    a: "Depends on the path and how far you want to go. Tell me what you need and I'll send you one clear number, no tiers, no \"starting at\".",
+    a: "We start with a free concept. Once we know we work well together, I'll make you an offer and we'll find a number that makes sense for your business.",
   },
 ];
 
 export const CONTACT = {
-  title: "Stop watching. Start building.",
-  lead: "Tell me a bit about you. I'll get back within a day or two.",
+  title: "Start building.\nSeriously.\nNow.",
+  lead: "Say yes to a free concept.",
   choices: [
     { value: "learn", label: "Teach me" },
     { value: "build", label: "Build it for me" },
     { value: "unsure", label: "Not sure yet" },
   ],
-  submit: "Send",
+  submit: "YES",
   disabledNote: "Draft: the form is switched off on this preview.",
 };

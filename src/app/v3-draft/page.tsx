@@ -1,17 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import { css } from "./styles";
-import { Scribble } from "./_interactive";
 import {
   ABOUT,
   CONTACT,
   FAQ,
-  GROW,
   HERO,
   PATHS,
   PROBLEM,
   STEPS,
   STRIP,
+  SUPPORT,
 } from "./content";
 
 /* Draft badge + switched-off form. Flip to false once the copy is confirmed. */
@@ -66,7 +65,11 @@ export default function V3Draft() {
             <div className="v3-hero-text">
               <p className="v3-eye">{HERO.eyebrow}</p>
               <h1>{HERO.title}</h1>
-              <p className="v3-lead">{HERO.lead}</p>
+              <p className="v3-lead">
+                {HERO.lead[0]}
+                <mark className="v3-yes">{HERO.lead[1]}</mark>
+                {HERO.lead[2]}
+              </p>
               <a className="v3-btn v3-btn--white" href="#contact">
                 {HERO.cta}
               </a>
@@ -90,15 +93,13 @@ export default function V3Draft() {
             <div className="v3-inner v3-problem">
               <div>
                 <h2 className="v3-h" style={{ whiteSpace: "pre-line" }}>{PROBLEM.title}</h2>
-                <Scribble />
               </div>
               <div className="v3-body">
                 {PROBLEM.paragraphs.map((p) => (
                   <p key={p}>{p}</p>
                 ))}
                 <div className="v3-btns">
-                  <a className="v3-btn" href="#paths">{PROBLEM.primary}</a>
-                  <a className="v3-btn v3-btn--ghost" href="#contact">{PROBLEM.secondary}</a>
+                  <a className="v3-btn" href="#contact">{PROBLEM.cta}</a>
                 </div>
               </div>
             </div>
@@ -106,13 +107,6 @@ export default function V3Draft() {
 
           {/* Two paths */}
           <section id="paths" className="v3-sec v3-sec--tight">
-            <div className="v3-sec-head">
-              <h2 className="v3-h">Two ways to stop watching</h2>
-              <p className="v3-muted">
-                Learn to do it yourself, or hand it to me. Either way you end up with something
-                live, not a folder of bookmarks.
-              </p>
-            </div>
             <div className="v3-paths">
               {PATHS.map((p) => (
                 <article key={p.id} id={p.id} className={`v3-card v3-card--${p.tone}`}>
@@ -122,6 +116,11 @@ export default function V3Draft() {
                   </div>
                   <h3>{p.title}</h3>
                   <p>{p.body}</p>
+                  {p.highlight && (
+                    <p>
+                      <mark className="v3-yes">{p.highlight}</mark>
+                    </p>
+                  )}
                   <ul>
                     {p.points.map((pt) => (
                       <li key={pt}>{pt}</li>
@@ -133,29 +132,37 @@ export default function V3Draft() {
                 </article>
               ))}
             </div>
-            <div className="v3-grow">
-              <span className="v3-h3">{GROW.label}</span>
-              <p>{GROW.body}</p>
-              <a href={GROW.link.href} target="_blank" rel="noopener noreferrer">
-                {GROW.link.label} →
-              </a>
-            </div>
           </section>
 
           {/* Steps */}
           <section className="v3-sec v3-sec--tight">
-            <div className="v3-sec-head">
-              <h2 className="v3-h">How it works</h2>
+            <div className="v3-easy">
+            <div className="v3-easy-head">
+              <p className="v3-easy-eye">
+                <span aria-hidden="true">+</span> How it works <span aria-hidden="true">+</span>
+              </p>
+              <h2 className="v3-easy-h">Easy.</h2>
             </div>
             <ol className="v3-steps" style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {STEPS.map((s) => (
                 <li key={s.n} className="v3-step">
                   <span className="v3-step-n">{s.n}</span>
-                  <h3>{s.title}</h3>
-                  <p>{s.body}</p>
+                  <div>
+                    <h3>{s.title}</h3>
+                    <p>
+                      {s.body}
+                      {"highlight" in s && (
+                        <>
+                          {" "}
+                          <mark className="v3-yes">{s.highlight}</mark>
+                        </>
+                      )}
+                    </p>
+                  </div>
                 </li>
               ))}
             </ol>
+            </div>
           </section>
 
           {/* About */}
@@ -178,6 +185,14 @@ export default function V3Draft() {
             </div>
           </section>
 
+          {/* Support */}
+          <section className="v3-sec v3-sec--tight">
+            <div className="v3-support">
+              <h2 className="v3-h">{SUPPORT.title}</h2>
+              <p>{SUPPORT.body}</p>
+            </div>
+          </section>
+
           {/* FAQ */}
           <section className="v3-sec v3-sec--tight">
             <div className="v3-inner v3-about">
@@ -197,7 +212,7 @@ export default function V3Draft() {
           <section id="contact" className="v3-contact" aria-labelledby="v3-contact-h">
             <div className="v3-contact-in">
               <div>
-                <h2 id="v3-contact-h" className="v3-h">{CONTACT.title}</h2>
+                <h2 id="v3-contact-h" className="v3-h" style={{ whiteSpace: "pre-line" }}>{CONTACT.title}</h2>
                 <p className="v3-lead">{CONTACT.lead}</p>
               </div>
               <form className="v3-form" action="#" aria-describedby={DEMO ? "v3-demo-note" : undefined}>
