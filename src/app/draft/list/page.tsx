@@ -27,6 +27,19 @@ const PROJECTS: { project: string; meta: string; entries: Entry[] }[] = [
         status: "Concept",
         note: "Same page as v2, warmer and a bit indie so it is not a 1:1 of matteoc.com: grained cream paper, ember hero and card, deep-green scribble, sage box, hard offset shadows, sentence-case bold headings, a tilted FOMO sticker. Still all IBM Plex Mono. Copy in content.ts; form switched off.",
       },
+      {
+        name: "mikistec v4",
+        href: "/v4-draft",
+        status: "Concept",
+        note: "Back to the live homepage and its playfulness (sparkling \"good\", gold text, games, QVIKS pop-up). Main offer stays: I build your website and look after it. Adds the free concept, an AI chatbot plus real support, and a separate Learn AI page for people who want to build it themselves.",
+        pages: [
+          {
+            label: "Learn AI",
+            href: "/v4-draft/learn",
+            note: "The FOMO story from v3: painting hero, the problem, one-on-one sessions with my skills, fair questions.",
+          },
+        ],
+      },
     ],
   },
   {
