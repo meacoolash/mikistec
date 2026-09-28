@@ -579,6 +579,20 @@ export default function Page() {
       </section>
       */}
 
+      {/* 4b. Smart website: the idea only, the price lives on /pricing */}
+      <section className="bg-paper px-6 pb-24 text-ink md:pb-32">
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 rounded-[14px] border-2 border-dashed border-accent px-6 py-10 text-center md:px-12">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Need more than a website?</p>
+          <h2 className="font-display text-[clamp(1.75rem,1.4rem+1.6vw,2.5rem)] font-black leading-[1.05] tracking-tighter">
+            Make it smart
+          </h2>
+          <p className="text-ink/80">AI chatbot · Lead capture · Mini CRM</p>
+          <p className="max-w-md text-lg text-ink/70">
+            Your website can become a small system for your business.
+          </p>
+        </div>
+      </section>
+
       {/* 5. Support */}
       <section className="bg-ink px-6 py-24 text-paper md:py-32">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">

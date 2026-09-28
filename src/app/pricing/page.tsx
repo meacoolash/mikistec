@@ -70,7 +70,8 @@ export default function PricingPage() {
                   from
                 </span>
                 €390
-              </p>              <div className="flex flex-col gap-3">
+              </p>
+              <div className="flex flex-col gap-3">
                 <h2 className={TITLE}>Learn to build with AI</h2>
                 <p className="text-ink/70">
                   I set everything up with you and teach you how to turn your ideas into real
@@ -140,6 +141,17 @@ export default function PricingPage() {
                 BUILD IT FOR ME <span aria-hidden="true">→</span>
               </Link>
             </article>
+
+            {/* Smart upgrade: sits under the €990 column only, never folded into the base price */}
+            <aside className="flex flex-col gap-4 rounded-[14px] border-2 border-dashed border-accent p-7 md:col-start-2 md:p-8">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+                <div>
+                  <p className={`${LABEL} text-accent`}>Upgrade</p>
+                  <h2 className={`${TITLE} mt-2`}>Make it smart</h2>
+                </div>
+              </div>
+              <p className="text-ink/80">AI chatbot · Lead capture · Mini CRM</p>
+            </aside>
           </div>
         </section>
       </main>
