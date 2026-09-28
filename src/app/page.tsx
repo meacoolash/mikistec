@@ -314,7 +314,19 @@ function Step({
   )
 }
 
+const PATHS = [
+  { value: "build", label: "Build it for me" },
+  { value: "learn", label: "Coach me" },
+  { value: "unsure", label: "Not sure yet" },
+]
+
 function ContactForm() {
+  // The coaching page links here with ?path=learn (or ?path=build), so "Coach me" comes preselected.
+  const [path, setPath] = useState("build")
+  useEffect(() => {
+    const wanted = new URLSearchParams(window.location.search).get("path")
+    if (wanted && PATHS.some((p) => p.value === wanted)) setPath(wanted)
+  }, [])
   const state = useContactForm("landing")
 
   if (state.succeeded) {
@@ -346,6 +358,26 @@ function ContactForm() {
       </div>
       <form onSubmit={state.handleSubmit} className="flex w-full flex-col gap-5 text-left">
       <Honeypot />
+      <fieldset>
+        <legend className="mb-2 block text-xs uppercase tracking-wide text-ink/50">What do you want?</legend>
+        <div className="flex flex-wrap gap-2">
+          {PATHS.map((p) => (
+            <label key={p.value} className="cursor-pointer">
+              <input
+                type="radio"
+                name="path"
+                value={p.value}
+                checked={path === p.value}
+                onChange={() => setPath(p.value)}
+                className="peer sr-only"
+              />
+              <span className="inline-block rounded-md border border-ink/20 px-4 py-2 text-sm font-semibold text-ink/70 transition-colors hover:border-ink/40 peer-checked:border-accent peer-checked:bg-accent peer-checked:text-paper peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent">
+                {p.label}
+              </span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
       <div>
         <label htmlFor="name" className="mb-1 block text-xs uppercase tracking-wide text-ink/50">
           Name
@@ -435,6 +467,19 @@ export default function Page() {
         </div>
       </section>
 
+      {/* 1b. Learn teaser: one quiet line, no card, same centred type as the rest */}
+      <section className="bg-paper px-6 pb-24 text-ink md:pb-32">
+        <p className="mx-auto max-w-2xl border-t border-ink/10 pt-10 text-center text-lg text-ink/70">
+          <span className="font-display font-extrabold text-ink">Wanna build it yourself?</span>{" "}
+          <Link
+            href="/coaching"
+            className="font-semibold text-accent underline-offset-4 hover:underline"
+          >
+            1:1 coaching <span aria-hidden="true">→</span>
+          </Link>
+        </p>
+      </section>
+
       {/* 2. Proof */}
       <section className="bg-ink px-6 py-24 text-paper md:py-32">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
@@ -468,18 +513,26 @@ export default function Page() {
             />
             .
           </p>
+          <p className="text-lg text-paper/75">
+            I work with AI agents every day, on my own businesses first.
+          </p>
         </div>
       </section>
 
       {/* 3. Why not Wix / AI */}
       <section className="bg-accent px-6 py-24 text-paper md:py-32">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
-          <p className="text-lg text-paper/85">Nothing to learn. Nothing to manage.</p>
           <GoldText>I give you simplicity.</GoldText>
           <p className="text-lg text-paper/85">
-            + Speed, SEO, analytics, integrations, tools, games,
+            + Speed, SEO, analytics, an AI chatbot, integrations, tools, games,
             <br />
             and much more.
+          </p>
+          <p className="text-lg text-paper/85">
+            Nothing to learn.{" "}
+            <Link href="/coaching" className="text-paper underline underline-offset-4 hover:opacity-80">
+              Unless you want to <span aria-hidden="true">→</span>
+            </Link>
           </p>
         </div>
       </section>
@@ -525,6 +578,21 @@ export default function Page() {
         </div>
       </section>
       */}
+
+      {/* 5. Support */}
+      <section className="bg-ink px-6 py-24 text-paper md:py-32">
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
+          <Eyebrow>After launch</Eyebrow>
+          <h2 className="text-[clamp(2rem,1.5rem+2.8vw,3.5rem)] font-display font-black leading-[0.98] tracking-tighter">
+            Real support. From a real person.
+          </h2>
+          <p className="text-lg text-paper/75">
+            I&apos;ll set up an AI chatbot for your customers. But when you need help, you
+            don&apos;t get a bot. You get <GoldText as="span" size="text-lg">me.</GoldText> I
+            answer fast and sort out whatever comes up.
+          </p>
+        </div>
+      </section>
 
       {/* 6. Contact */}
       <section id="contact" className="bg-paper px-6 py-24 text-ink md:py-32">

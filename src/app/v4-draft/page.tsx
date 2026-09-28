@@ -316,7 +316,20 @@ function Step({
   )
 }
 
+const PATHS = [
+  { value: "build", label: "Build it for me" },
+  { value: "learn", label: "Coach me" },
+  { value: "unsure", label: "Not sure yet" },
+]
+
 function ContactForm() {
+  // The coaching page links here with ?path=learn, so "Coach me" comes preselected.
+  const [path, setPath] = useState("build")
+  useEffect(() => {
+    const wanted = new URLSearchParams(window.location.search).get("path")
+    if (wanted && PATHS.some((p) => p.value === wanted)) setPath(wanted)
+  }, [])
+
   return (
     <>
       <div className="mb-8 flex flex-col items-center gap-8">
@@ -326,6 +339,26 @@ function ContactForm() {
         </h2>
       </div>
       <form onSubmit={(e) => e.preventDefault()} className="flex w-full flex-col gap-5 text-left">
+      <fieldset>
+        <legend className="mb-2 block text-xs uppercase tracking-wide text-ink/50">What do you want?</legend>
+        <div className="flex flex-wrap gap-2">
+          {PATHS.map((p) => (
+            <label key={p.value} className="cursor-pointer">
+              <input
+                type="radio"
+                name="path"
+                value={p.value}
+                checked={path === p.value}
+                onChange={() => setPath(p.value)}
+                className="peer sr-only"
+              />
+              <span className="inline-block rounded-md border border-ink/20 px-4 py-2 text-sm font-semibold text-ink/70 transition-colors hover:border-ink/40 peer-checked:border-accent peer-checked:bg-accent peer-checked:text-paper peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-accent">
+                {p.label}
+              </span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
       <div>
         <label htmlFor="name" className="mb-1 block text-xs uppercase tracking-wide text-ink/50">
           Name
@@ -415,30 +448,17 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 1b. Learn teaser */}
+      {/* 1b. Learn teaser: one quiet line, no card, same centred type as the rest */}
       <section className="bg-paper px-6 pb-24 text-ink md:pb-32">
-        <Link
-          href="/v4-draft/learn"
-          className="group mx-auto flex max-w-2xl flex-col items-center gap-3 rounded-2xl border border-ink/10 bg-white/60 px-6 py-10 text-center transition-colors hover:border-accent"
-        >
-          <span
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 text-accent transition-transform group-hover:rotate-45"
-            aria-hidden="true"
+        <p className="mx-auto max-w-2xl border-t border-ink/10 pt-10 text-center text-lg text-ink/70">
+          <span className="font-display font-extrabold text-ink">Wanna build it yourself?</span>{" "}
+          <Link
+            href="/v4-draft/learn"
+            className="font-semibold text-accent underline-offset-4 hover:underline"
           >
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
-              <path d="M12 0C12 6.627 17.373 12 24 12C17.373 12 12 17.373 12 24C12 17.373 6.627 12 0 12C6.627 12 12 6.627 12 0Z" />
-            </svg>
-          </span>
-          <span className="font-display text-2xl font-extrabold leading-tight">
-            Fancy building it yourself?
-          </span>
-          <span className="text-ink/70">
-            I&apos;ll coach you to build your own website and your own AI agents.
-          </span>
-          <span className="mt-1 text-sm font-semibold text-accent">
-            Learn AI with me <span aria-hidden="true" className="inline-block transition-transform group-hover:translate-x-1">→</span>
-          </span>
-        </Link>
+            1:1 coaching <span aria-hidden="true">→</span>
+          </Link>
+        </p>
       </section>
 
       {/* 2. Proof */}

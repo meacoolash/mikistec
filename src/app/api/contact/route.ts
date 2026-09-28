@@ -22,6 +22,12 @@ function safeOrigin(url: string): string | null {
 
 // Forms only legitimately fire from the site itself or local dev. Direct API
 // hits from anywhere else are silently dropped.
+const PATH_LABELS = {
+  build: "Build it for me",
+  learn: "Coach me",
+  unsure: "Not sure yet",
+} as const
+
 const ALLOWED_ORIGINS = new Set([
   "https://mikistec.com",
   "https://www.mikistec.com",
@@ -60,6 +66,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Please enter your name and a valid email." }, { status: 400 })
     }
     const message = sanitizeText(body.message, 2000)
+    // The landing form's "What do you want?" choice; anything else is ignored.
+    const wants = PATH_LABELS[body.path as keyof typeof PATH_LABELS] ?? ""
 
     const to = process.env[source.toEnv] || process.env.CONTACT_TO
     if (!to) {
@@ -81,7 +89,9 @@ export async function POST(req: Request) {
       subject: `${source.subject}: ${name}`,
       html:
         `<p><strong>Name:</strong> ${escapeHtml(name)}<br>` +
-        `<strong>Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p>` +
+        `<strong>Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a>` +
+        (wants ? `<br><strong>Wants:</strong> ${escapeHtml(wants)}` : "") +
+        `</p>` +
         messageBlock,
     })
 

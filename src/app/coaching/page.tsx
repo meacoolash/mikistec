@@ -1,12 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Header } from "../_header"
-import { Footer } from "../../sections/footer"
+import { Header } from "../sections/header"
+import { Footer } from "../sections/footer"
 
 export const metadata = {
-  title: "Learn AI with Miki Stec",
+  title: "Coaching",
   description: "I coach you to build your own website and your own AI agents.",
-  robots: { index: false, follow: false },
+  alternates: { canonical: "/coaching" },
 }
 
 function Eyebrow({ children, tone = "accent" }: { children: React.ReactNode; tone?: "accent" | "paper" }) {
@@ -65,7 +65,7 @@ export default function LearnPage() {
           <div className="mx-auto grid w-full max-w-5xl items-center gap-10 md:grid-cols-[5fr_7fr] md:gap-14">
             <div className="mx-auto w-60 mix-blend-multiply md:w-full md:max-w-sm">
               <Image
-                src="/draft/v2/fomo.jpg"
+                src="/coaching-fomo.jpg"
                 alt="A figure crouched with head in hands, surrounded by other people's photos and a clock"
                 width={800}
                 height={1200}
@@ -74,7 +74,7 @@ export default function LearnPage() {
               />
             </div>
             <div className="flex flex-col items-center gap-6 text-center md:items-start md:text-left">
-              <Eyebrow tone="paper">Learn AI</Eyebrow>
+              <Eyebrow tone="paper">1:1 coaching</Eyebrow>
               <h1 className="text-[clamp(2.5rem,1.5rem+4vw,4.5rem)] font-display font-black leading-[0.98] tracking-tighter">
                 Feeling left behind?
               </h1>
@@ -82,7 +82,7 @@ export default function LearnPage() {
                 I coach you to build your own website and your own AI agents. From FOMO to shipping.
               </p>
               <Link
-                href="/v4-draft?path=learn#contact"
+                href="/?path=learn#contact"
                 className="inline-flex items-center justify-center gap-2 rounded-md bg-[#FFD75E] px-7 py-3 text-sm font-semibold tracking-wide text-ink shadow-[0_0_18px_rgba(255,197,61,0.55)] transition-opacity hover:opacity-90"
               >
                 YES <span aria-hidden="true">→</span>
@@ -157,12 +157,12 @@ export default function LearnPage() {
           <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
             <h2 className={H2}>Start building. Seriously. Now.</h2>
             <Link
-              href="/v4-draft?path=learn#contact"
+              href="/?path=learn#contact"
               className="inline-flex items-center justify-center gap-2 rounded-md bg-[#FFD75E] px-7 py-3 text-sm font-semibold tracking-wide text-ink shadow-[0_0_18px_rgba(255,197,61,0.55)] transition-opacity hover:opacity-90"
             >
               YES <span aria-hidden="true">→</span>
             </Link>
-            <Link href="/v4-draft?path=build#contact" className="text-sm text-paper/80 underline underline-offset-4 hover:text-paper">
+            <Link href="/?path=build#contact" className="text-sm text-paper/80 underline underline-offset-4 hover:text-paper">
               Rather have me build it for you?
             </Link>
           </div>
