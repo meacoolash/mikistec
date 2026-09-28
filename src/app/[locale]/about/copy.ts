@@ -118,7 +118,7 @@ const en = {
     },
     beyond: {
       years: "Always",
-      title: "Music, Chinese and old books",
+      title: "Music, curiosity and old books",
       body: [
         "Outside work, I'm still curious about far too many things.",
       ],
@@ -136,7 +136,7 @@ const en = {
   flashCaption: "The real 2003 Flash site",
   beyond: [
     { title: "Music", body: "Keys, guitar and other instruments, recording and the odd live gig." },
-    { title: "Chinese", body: "I started learning Chinese characters partly so I could read the Tao Te Ching closer to the original." },
+    { title: "Curiosity", body: "When something grabs me, I go deep. For example, I dug into Chinese characters to understand the Tao Te Ching better." },
     { title: "Mind", body: "I read philosophy and psychology and practise qi gong and yoga. The longer I run a business, the more I see that understanding people matters as much as understanding technology." },
   ],
   taoQuote: "A journey of a thousand miles begins with a single step.",
@@ -254,7 +254,7 @@ const sk: Copy = {
     },
     beyond: {
       years: "Vždy",
-      title: "Hudba, čínština a staré knihy",
+      title: "Hudba, zvedavosť a staré knihy",
       body: [
         "Mimo práce ma stále zaujíma príliš veľa vecí.",
       ],
@@ -272,7 +272,7 @@ const sk: Copy = {
   flashCaption: "Skutočný Flash web z roku 2003",
   beyond: [
     { title: "Hudba", body: "Klávesy, gitara a iné nástroje, nahrávanie a občas živé hranie." },
-    { title: "Čínština", body: "Začal som sa učiť čínske znaky aj preto, aby som si mohol prečítať Tao Te Ťing bližšie k originálu." },
+    { title: "Zvedavosť", body: "Keď ma niečo zaujme, idem do hĺbky. Napríklad som skúmal čínske znaky, aby som lepšie pochopil Tao Te Ťing." },
     { title: "Myseľ", body: "Čítam filozofiu a psychológiu, cvičím čchi-kung a jogu. Čím dlhšie podnikám, tým viac vidím, že rozumieť ľuďom je rovnako dôležité ako rozumieť technológiám." },
   ],
   taoQuote: "Cesta dlhá tisíc míľ začína prvým krokom.",
@@ -388,7 +388,7 @@ const cz: Copy = {
     },
     beyond: {
       years: "Vždy",
-      title: "Hudba, čínština a staré knihy",
+      title: "Hudba, zvědavost a staré knihy",
       body: [
         "Mimo práci mě pořád zajímá až příliš mnoho věcí.",
       ],
@@ -406,7 +406,7 @@ const cz: Copy = {
   flashCaption: "Skutečný Flash web z roku 2003",
   beyond: [
     { title: "Hudba", body: "Klávesy, kytara a jiné nástroje, nahrávání a občas živé hraní." },
-    { title: "Čínština", body: "Začal jsem se učit čínské znaky i proto, abych si mohl přečíst Tao Te Ťing blíž originálu." },
+    { title: "Zvědavost", body: "Když mě něco zaujme, jdu do hloubky. Například jsem zkoumal čínské znaky, abych lépe pochopil Tao Te Ťing." },
     { title: "Mysl", body: "Čtu filozofii a psychologii, cvičím čchi-kung a jógu. Čím déle podnikám, tím víc vidím, že rozumět lidem je stejně důležité jako rozumět technologiím." },
   ],
   taoQuote: "Cesta dlouhá tisíc mil začíná prvním krokem.",

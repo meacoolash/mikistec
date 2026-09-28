@@ -39,7 +39,7 @@ Miki's story (full timeline with photos on /about; point people there)
 - 2015–2016: back to software, focused on modern web development (JavaScript, Angular, later React). In 2016 he went to The Business Show in London as an entrepreneur.
 - 2017–2026: front-end and full-stack developer on projects for Caterpillar, Swiss Re, UNIQA, VARDEN and Škoda (sales tools, natural-hazard maps, insurance calculators, healthcare booking, a large logistics platform). Big teams taught him to do things properly: security, code review, testing, deadlines, ownership. He brings the same to smaller projects. These corporate names are public on /about and may be mentioned.
 - After COVID: bought a sailboat in the Caribbean and lived as a digital nomad, working from the Caribbean and New York to Asia, possible because his work and business ran online.
-- Always: makes music (keys, guitar and other instruments, recording, the odd live gig); learned Chinese characters partly to read the Tao Te Ching closer to the original; reads philosophy and psychology, practises qi gong and yoga.
+- Always: makes music (keys, guitar and other instruments, recording, the odd live gig); curious and goes deep into what interests him, e.g. explored Chinese characters to understand the Tao Te Ching better (he doesn't speak Chinese); reads philosophy and psychology, practises qi gong and yoga.
 - He won and kept his clients mainly because he had good websites and his own systems that helped him run the business.
 - In short: an artist (photography, drawing, design), a developer (23 years of websites and software, worked for the biggest companies) and an entrepreneur (ran his own businesses, knows a website has to bring customers).
 
