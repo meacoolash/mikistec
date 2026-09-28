@@ -95,12 +95,12 @@ export const Header = ({ hideNav }: HeaderProps) => {
                     <Link className={cls("/pricing")} href="/pricing" aria-current={current("/pricing")}>
                         {t.pricing}
                     </Link>
-                    {/* Hidden on phones, where the bar is already full; the footer links it there. */}
-                    <Link className={`hidden sm:inline ${cls("/about")}`} href="/about" aria-current={current("/about")}>
+                    <Link className={cls("/about")} href="/about" aria-current={current("/about")}>
                         {t.about}
                     </Link>
+                    {/* On phones the About link takes the CTA's place; the bar has no room for both. */}
                     <Link
-                        className="ml-1 inline-flex items-center justify-center gap-1.5 rounded-md bg-accent px-3 sm:px-4 py-2 text-sm font-semibold tracking-wide text-paper transition-opacity hover:opacity-90"
+                        className="ml-1 hidden sm:inline-flex items-center justify-center gap-1.5 rounded-md bg-accent px-3 sm:px-4 py-2 text-sm font-semibold tracking-wide text-paper transition-opacity hover:opacity-90"
                         href="/#contact"
                     >
                         {t.cta} <span aria-hidden="true" className="hidden min-[400px]:inline">→</span>
