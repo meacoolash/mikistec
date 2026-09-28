@@ -16,6 +16,7 @@ const COPY = {
         coach: "You build",
         coachBubble: "I coach you to build your own website and AI agents, one-on-one.",
         pricing: "Pricing",
+        about: "About",
         cta: "YES",
     },
     sk: {
@@ -24,6 +25,7 @@ const COPY = {
         coach: "Naučím",
         coachBubble: "Naučím vás postaviť si vlastný web a AI agentov, individuálne.",
         pricing: "Cenník",
+        about: "O mne",
         cta: "ÁNO",
     },
     cz: {
@@ -32,6 +34,7 @@ const COPY = {
         coach: "Naučím",
         coachBubble: "Naučím vás postavit si vlastní web a AI agenty, individuálně.",
         pricing: "Ceník",
+        about: "O mně",
         cta: "ANO",
     },
 }
@@ -91,6 +94,10 @@ export const Header = ({ hideNav }: HeaderProps) => {
                     </WithBubble>
                     <Link className={cls("/pricing")} href="/pricing" aria-current={current("/pricing")}>
                         {t.pricing}
+                    </Link>
+                    {/* Hidden on phones, where the bar is already full; the footer links it there. */}
+                    <Link className={`hidden sm:inline ${cls("/about")}`} href="/about" aria-current={current("/about")}>
+                        {t.about}
                     </Link>
                     <Link
                         className="ml-1 inline-flex items-center justify-center gap-1.5 rounded-md bg-accent px-3 sm:px-4 py-2 text-sm font-semibold tracking-wide text-paper transition-opacity hover:opacity-90"

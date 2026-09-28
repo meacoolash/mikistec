@@ -5,9 +5,9 @@ import { Assistant } from "./assistant"
 import { LanguageSwitcher } from "./language-switcher"
 
 const COPY = {
-    en: { rights: "All rights reserved.", privacy: "Privacy Policy", terms: "Terms of Service", cookies: "Cookie policy" },
-    sk: { rights: "Všetky práva vyhradené.", privacy: "Ochrana súkromia", terms: "Obchodné podmienky", cookies: "Cookies" },
-    cz: { rights: "Všechna práva vyhrazena.", privacy: "Ochrana soukromí", terms: "Obchodní podmínky", cookies: "Cookies" },
+    en: { about: "About", rights: "All rights reserved.", privacy: "Privacy Policy", terms: "Terms of Service", cookies: "Cookie policy" },
+    sk: { about: "O mne", rights: "Všetky práva vyhradené.", privacy: "Ochrana súkromia", terms: "Obchodné podmienky", cookies: "Cookies" },
+    cz: { about: "O mně", rights: "Všechna práva vyhrazena.", privacy: "Ochrana soukromí", terms: "Obchodní podmínky", cookies: "Cookies" },
 }
 
 export const Footer = () => {
@@ -17,6 +17,9 @@ export const Footer = () => {
             <p className="text-xs text-ink/50">© {new Date().getFullYear()} Miki Stec. {t.rights}</p>
             <LanguageSwitcher className="sm:ml-6" />
             <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+                <Link className="text-xs hover:underline underline-offset-4 text-ink/50" href="/about">
+                    {t.about}
+                </Link>
                 <Link className="text-xs hover:underline underline-offset-4 text-ink/50" href="/legal/privacy">
                     {t.privacy}
                 </Link>
