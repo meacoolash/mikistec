@@ -5,6 +5,7 @@ const PAGES: { path: string; changeFrequency: "monthly" | "yearly"; priority: nu
   { path: "/", changeFrequency: "monthly", priority: 1 },
   { path: "/coaching", changeFrequency: "monthly", priority: 0.8 },
   { path: "/pricing", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/about", changeFrequency: "monthly", priority: 0.6 },
   { path: "/games", changeFrequency: "monthly", priority: 0.4 },
   { path: "/games/pexeso", changeFrequency: "yearly", priority: 0.3 },
   { path: "/games/stack", changeFrequency: "yearly", priority: 0.3 },
