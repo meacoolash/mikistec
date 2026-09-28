@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 export default function PexesoGamePage() {
   return (
     <>
-      <Header playLabel="All games" playHref="/games" />
+      <Header />
       <main className="font-body">
         <section className="bg-paper px-6 py-16 text-ink md:py-20">
           <div className="mx-auto mb-10 flex max-w-2xl flex-col items-center gap-6 text-center">

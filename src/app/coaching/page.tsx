@@ -46,10 +46,6 @@ const FAQ = [
     q: "Which tools do we use?",
     a: "Whatever fits you. Mostly Claude and Claude Code, plus the tools you already use. I don't sell software, so I've no reason to push one.",
   },
-  {
-    q: "How much does it cost?",
-    a: "We start with a free concept. Once we know we work well together, I'll make you an offer and we'll find a number that makes sense for your business.",
-  },
 ]
 
 const H2 = "text-[clamp(2rem,1.5rem+2.8vw,3.5rem)] font-display font-black leading-[0.98] tracking-tighter"
@@ -57,11 +53,11 @@ const H2 = "text-[clamp(2rem,1.5rem+2.8vw,3.5rem)] font-display font-black leadi
 export default function LearnPage() {
   return (
     <div className="bg-white">
-      <Header hideCoaching />
+      <Header />
       <main className="font-body">
-        {/* 1. Hero: a blue card with room around it on a white page (as in v2); the FOMO painting melts into the blue */}
+        {/* 1. Hero: a grey card with room around it on a white page; the FOMO painting melts into the grey */}
         <section className="px-4 md:px-7">
-          <div className="isolate mx-auto flex min-h-[min(88svh,860px)] max-w-[1240px] items-center rounded-[14px] bg-[#5A8CEF] px-5 py-14 text-paper md:px-16 md:py-16">
+          <div className="isolate mx-auto flex min-h-[min(88svh,860px)] max-w-[1240px] items-center rounded-[14px] bg-[#EDECE8] px-5 py-14 text-ink md:px-16 md:py-16">
           <div className="mx-auto grid w-full max-w-5xl items-center gap-10 md:grid-cols-[5fr_7fr] md:gap-14">
             <div className="mx-auto w-60 mix-blend-multiply md:w-full md:max-w-sm">
               <Image
@@ -74,16 +70,16 @@ export default function LearnPage() {
               />
             </div>
             <div className="flex flex-col items-center gap-6 text-center md:items-start md:text-left">
-              <Eyebrow tone="paper">1:1 coaching</Eyebrow>
+              <Eyebrow>1:1 coaching</Eyebrow>
               <h1 className="text-[clamp(2.5rem,1.5rem+4vw,4.5rem)] font-display font-black leading-[0.98] tracking-tighter">
                 Feeling left behind?
               </h1>
-              <p className="max-w-md text-lg text-paper/85">
+              <p className="max-w-md text-lg text-ink/70">
                 I coach you to build your own website and your own AI agents. From FOMO to shipping.
               </p>
               <Link
                 href="/?path=learn#contact"
-                className="inline-flex items-center justify-center gap-2 rounded-md bg-[#FFD75E] px-7 py-3 text-sm font-semibold tracking-wide text-ink shadow-[0_0_18px_rgba(255,197,61,0.55)] transition-opacity hover:opacity-90"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-7 py-3 text-sm font-semibold tracking-wide text-paper transition-opacity hover:opacity-90"
               >
                 YES <span aria-hidden="true">→</span>
               </Link>
@@ -129,6 +125,23 @@ export default function LearnPage() {
             <p className="text-lg text-ink/70">
               It&apos;s one afternoon of doing it next to someone who already does it every day.
             </p>
+          </div>
+        </section>
+
+        {/* 3b. Price */}
+        <section className="bg-white px-6 pb-24 text-ink md:pb-32">
+          <div className="mx-auto flex max-w-2xl flex-col items-center gap-5 rounded-[14px] bg-paper px-6 py-14 text-center">
+            <h2 className="font-display text-2xl font-extrabold">Start building with me</h2>
+            <p className="font-display text-[clamp(3.5rem,2.5rem+4vw,5.5rem)] font-black leading-none tracking-tighter text-accent">
+              €390
+            </p>
+            <p className="text-lg text-ink/70">3 private sessions.</p>
+            <Link
+              href="/?path=learn#contact"
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-[#FFD75E] px-7 py-3 text-sm font-semibold tracking-wide text-ink shadow-[0_0_18px_rgba(255,197,61,0.55)] transition-opacity hover:opacity-90"
+            >
+              YES <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </section>
 
