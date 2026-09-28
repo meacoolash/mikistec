@@ -40,7 +40,7 @@ const FAQ = [
   },
   {
     q: "Can't I just learn this from YouTube?",
-    a: "Yes, you can.",
+    a: "Yes, you can. But it takes time, and it's easy to miss important details you don't yet know to look for.",
   },
   {
     q: "Which tools do we use?",
@@ -61,7 +61,7 @@ export default function LearnPage() {
       <main className="font-body">
         {/* 1. Hero: a blue card with room around it on a white page (as in v2); the FOMO painting melts into the blue */}
         <section className="px-4 md:px-7">
-          <div className="isolate mx-auto flex min-h-[min(88svh,860px)] max-w-[1240px] items-center bg-accent px-5 py-14 text-paper md:px-16 md:py-16">
+          <div className="isolate mx-auto flex min-h-[min(88svh,860px)] max-w-[1240px] items-center rounded-[14px] bg-[#5A8CEF] px-5 py-14 text-paper md:px-16 md:py-16">
           <div className="mx-auto grid w-full max-w-5xl items-center gap-10 md:grid-cols-[5fr_7fr] md:gap-14">
             <div className="mx-auto w-60 mix-blend-multiply md:w-full md:max-w-sm">
               <Image
@@ -124,12 +124,10 @@ export default function LearnPage() {
           <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
             <Eyebrow>The problem</Eyebrow>
             <h2 className={H2}>
-              The problem is not mastering AI. You need to know what&apos;s possible for you.
+              You don&apos;t need to master AI. You need to know what it can do for you.
             </h2>
             <p className="text-lg text-ink/70">
-              Your feed is full of people with agents that write, research, answer email and ship
-              websites overnight. The gap between you and them isn&apos;t talent. It&apos;s one afternoon of doing it
-              next to someone who already does it every day.
+              It&apos;s one afternoon of doing it next to someone who already does it every day.
             </p>
           </div>
         </section>
