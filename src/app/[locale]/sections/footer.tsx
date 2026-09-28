@@ -10,7 +10,8 @@ const COPY = {
     cz: { about: "O mně", rights: "Všechna práva vyhrazena.", privacy: "Ochrana soukromí", terms: "Obchodní podmínky", cookies: "Cookies" },
 }
 
-export const Footer = () => {
+/** hideAssistant: pages that shouldn't show the chat bubble (e.g. /about). */
+export const Footer = ({ hideAssistant }: { hideAssistant?: boolean }) => {
     const t = COPY[useLocale()]
     return (
         <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-6 border-t border-ink/10">
@@ -30,7 +31,7 @@ export const Footer = () => {
                     {t.cookies}
                 </Link>
             </nav>
-            <Assistant />
+            {!hideAssistant && <Assistant />}
         </footer>
     )
 }

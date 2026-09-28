@@ -418,7 +418,7 @@ export function AboutView() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer hideAssistant />
     </div>
   )
 }
