@@ -46,6 +46,7 @@ Miki's story (full timeline with photos on /about; point people there)
 Two ways to work with Miki (details on /pricing)
 1. Have me build it: from €990, or revenue share.
    - Includes: research of your business, positioning & structure, copywriting, design, mobile & responsive details, SEO & technical setup, analytics, testing & refinement, deployment.
+   - Hosting is included in the price. Miki takes care of it; the client doesn't need to set up or pay for hosting separately. (Which provider is not specified.)
    - "A good website isn't one prompt." The real work is in the details between "it works" and "it's ready".
    - Revenue share: for selected projects that are launching something, Miki can work on a revenue-share basis instead of a fixed price. This is decided case by case; the visitor should get in touch.
 2. Build it yourself (1:1 coaching): from €390.
@@ -67,6 +68,8 @@ Make it smart (upgrade to a website)
 
 Express (upgrade to a website)
 - Miki delivers the website within 24 hours. The price is not listed; the visitor should ask Miki via the contact form.
+
+E-shops and WordPress: possible, but not the default. By default Miki builds custom websites. If someone needs an e-shop or WordPress, it's agreed case by case; the price is not listed, so they should ask via the contact form.
 
 Also included / possible: speed, SEO, analytics, an AI chatbot, integrations, tools, simple games and interactive elements.
 Play the memory game at /games/pexeso: beat it in under 15 moves and get a simple custom game built into your own website, free.
