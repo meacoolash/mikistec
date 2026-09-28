@@ -14,12 +14,12 @@ function Eyebrow({
   tone = "accent",
 }: {
   children: React.ReactNode
-  tone?: "accent" | "paper"
+  tone?: "accent" | "paper" | "gold"
 }) {
   return (
     <p
       className={`flex items-center justify-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase ${
-        tone === "paper" ? "text-paper" : "text-accent"
+        tone === "paper" ? "text-paper" : tone === "gold" ? "text-[#FFD75E]" : "text-accent"
       }`}
     >
       <span aria-hidden="true">✛</span>
@@ -314,6 +314,123 @@ function Step({
   )
 }
 
+const WORK = [
+  {
+    href: "https://joymeseci.com",
+    image: "/work/joymeseci.jpg",
+    domain: "joymeseci.com",
+    title: "Personal website",
+    note: "Somatic therapy, reparenting, yin yoga. Warm, quiet, one clear next step.",
+  },
+  {
+    href: "https://joymeseci.com/return-to-roots",
+    image: "/work/return-to-roots.jpg",
+    domain: "joymeseci.com/return-to-roots",
+    title: "Retreat landing page",
+    note: "Five days in Nepal. Itinerary, venue, guides, price and sign-up on one page.",
+  },
+  {
+    href: "https://www.qviks.com/smart-web",
+    image: "/work/smart-web.jpg",
+    domain: "qviks.com/smart-web",
+    title: "Smart website",
+    note: "AI chatbot, lead capture and a mini CRM. Every enquiry lands in a dashboard.",
+  },
+  {
+    href: "https://www.qviks.com",
+    image: "/work/qviks.jpg",
+    domain: "qviks.com",
+    title: "SaaS product",
+    note: "My own platform for client-based businesses. Clients, payments and scheduling in one place.",
+  },
+  {
+    href: "/games/pexeso",
+    image: "/work/pexeso.jpg",
+    domain: "mikistec.com/games/pexeso",
+    title: "Interactive experiences",
+    note: "Custom interactive elements that make people stay, explore and engage.",
+  },
+]
+
+// Joy's own words. Never invent a client quote.
+const TESTIMONIAL: { quote: string | null; name: string; role: string } = {
+  quote:
+    "Miki made the whole process incredibly easy for me. With very little effort on my side, he created something that truly feels like me and reflects who I am and what I do.",
+  name: "Joy Sevinç Meşeci",
+  role: "Somatic therapist",
+}
+
+function WorkCard({ href, image, domain, title, note }: (typeof WORK)[number]) {
+  return (
+    <a
+      href={href}
+      {...(href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}
+      className="group flex flex-col gap-3 text-left"
+    >
+      <div className="overflow-hidden rounded-md border border-ink/10 bg-white shadow-[0_12px_28px_-18px_rgba(0,0,0,0.4)] transition-transform duration-300 group-hover:-translate-y-1">
+        <div className="flex items-center gap-1 border-b border-ink/10 px-2 py-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-ink/15" />
+          <span className="h-1.5 w-1.5 rounded-full bg-ink/15" />
+          <span className="h-1.5 w-1.5 rounded-full bg-ink/15" />
+        </div>
+        <Image
+          src={image}
+          alt={`${title}: ${domain}`}
+          width={1440}
+          height={900}
+          sizes="(min-width: 1024px) 200px, (min-width: 768px) 300px, 50vw"
+          className="h-auto w-full"
+        />
+      </div>
+      <div>
+        <h3 className="font-display text-base font-extrabold leading-tight">
+          {title}{" "}
+          <span aria-hidden="true" className="text-accent transition-transform group-hover:translate-x-0.5">
+            ↗
+          </span>
+        </h3>
+        <p className="mt-1 text-sm text-ink/60">{note}</p>
+      </div>
+    </a>
+  )
+}
+
+function RecentWork() {
+  return (
+    <section className="bg-paper px-6 pb-24 text-ink md:pb-32">
+      <div className="mx-auto flex max-w-5xl flex-col items-center gap-10 text-center">
+        <div className="flex max-w-2xl flex-col items-center gap-6">
+          <Eyebrow>Recent work</Eyebrow>
+          <h2 className="text-[clamp(2rem,1.5rem+2.8vw,3.5rem)] font-display font-black leading-[0.98] tracking-tighter">
+            See it live.
+          </h2>
+        </div>
+        <div className="grid w-full grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 md:gap-6 lg:grid-cols-5">
+          {WORK.map((w) => (
+            <WorkCard key={w.href} {...w} />
+          ))}
+        </div>
+        <figure className="mt-2 flex max-w-xl flex-col items-center gap-3">
+          <span aria-hidden="true" className="font-display text-4xl font-black leading-none text-accent">
+            &ldquo;
+          </span>
+          <blockquote
+            className={`text-lg font-medium leading-snug ${
+              TESTIMONIAL.quote ? "text-ink" : "italic text-ink/35"
+            }`}
+          >
+            {TESTIMONIAL.quote ?? "Joy's words go here, two or three sentences in her own voice."}
+          </blockquote>
+          <figcaption className="text-sm">
+            <span className="font-semibold text-ink">{TESTIMONIAL.name}</span>
+            <span className="text-ink/50"> · {TESTIMONIAL.role}</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  )
+}
+
 const PATHS = [
   { value: "build", label: "Build it for me" },
   { value: "learn", label: "Coach me" },
@@ -563,6 +680,9 @@ export default function Page() {
         </div>
       </section>
 
+      {/* 4a. Recent work + testimonial */}
+      <RecentWork />
+
       {/* 5. Offer
       <section className="bg-accent px-6 py-24 text-paper md:py-32">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
@@ -581,7 +701,12 @@ export default function Page() {
 
       {/* 4b. Smart website: the idea only, the price lives on /pricing */}
       <section className="bg-paper px-6 pb-24 text-ink md:pb-32">
-        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 rounded-[14px] border-2 border-dashed border-accent px-6 py-10 text-center md:px-12">
+        <a
+          href="https://www.qviks.com/smart-web"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group mx-auto flex max-w-2xl flex-col items-center gap-4 rounded-[14px] border-2 border-dashed border-accent px-6 py-10 text-center transition-colors hover:bg-accent/5 md:px-12"
+        >
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Need more than a website?</p>
           <h2 className="font-display text-[clamp(1.75rem,1.4rem+1.6vw,2.5rem)] font-black leading-[1.05] tracking-tighter">
             Make it smart
@@ -590,13 +715,16 @@ export default function Page() {
           <p className="max-w-md text-lg text-ink/70">
             Your website can become a small system for your business.
           </p>
-        </div>
+          <span className="text-sm font-semibold text-accent group-hover:underline underline-offset-4">
+            See demo <span aria-hidden="true">↗</span>
+          </span>
+        </a>
       </section>
 
       {/* 5. Support */}
       <section className="bg-ink px-6 py-24 text-paper md:py-32">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
-          <Eyebrow>After launch</Eyebrow>
+          <Eyebrow tone="gold">After launch</Eyebrow>
           <h2 className="text-[clamp(2rem,1.5rem+2.8vw,3.5rem)] font-display font-black leading-[0.98] tracking-tighter">
             Real support. From a real person.
           </h2>

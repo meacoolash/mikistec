@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Header } from "../sections/header"
 import { Footer } from "../sections/footer"
+import { RevenueShare } from "./RevenueShare"
 
 export const metadata = {
   title: "Pricing",
@@ -105,6 +106,7 @@ export default function PricingPage() {
                   from
                 </span>
                 €990
+                <RevenueShare className="ml-3 align-middle font-body text-lg font-semibold tracking-normal text-[#FFD75E]" />
               </p>
               <div className="flex flex-col gap-3">
                 <h2 className={TITLE}>Get a finished website</h2>
@@ -143,7 +145,12 @@ export default function PricingPage() {
             </article>
 
             {/* Smart upgrade: sits under the €990 column only, never folded into the base price */}
-            <aside className="flex flex-col gap-4 rounded-[14px] border-2 border-dashed border-accent p-7 md:col-start-2 md:p-8">
+            <a
+              href="https://www.qviks.com/smart-web"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col gap-4 rounded-[14px] border-2 border-dashed border-accent p-7 transition-colors hover:bg-accent/5 md:col-start-2 md:p-8"
+            >
               <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
                 <div>
                   <p className={`${LABEL} text-accent`}>Upgrade</p>
@@ -151,7 +158,10 @@ export default function PricingPage() {
                 </div>
               </div>
               <p className="text-ink/80">AI chatbot · Lead capture · Mini CRM</p>
-            </aside>
+              <span className="text-sm font-semibold text-accent underline-offset-4 group-hover:underline">
+                See demo <span aria-hidden="true">↗</span>
+              </span>
+            </a>
           </div>
         </section>
       </main>

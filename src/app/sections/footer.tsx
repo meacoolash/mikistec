@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Assistant } from "./assistant"
 
 export const Footer = () => {
     return (
@@ -15,6 +16,7 @@ export const Footer = () => {
                     Cookie policy
                 </Link>
             </nav>
+            <Assistant />
         </footer>
     )
 }
