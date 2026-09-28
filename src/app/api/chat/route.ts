@@ -2,6 +2,7 @@ import OpenAI from "openai"
 import type { ChatCompletionMessageParam } from "openai/resources/chat/completions"
 import { checkRateLimit } from "@/lib/rate-limit-check"
 import { INFO } from "@/lib/assistant"
+import { sendEmail } from "@/lib/email/email"
 
 /**
  * POST /api/chat — the site assistant. Streams plain text back. Ported from
@@ -23,7 +24,9 @@ const SYSTEM = `You are the AI assistant on Miki Stec's website (mikistec.com) a
 
 Keep it short: usually one sentence, two at most. Plain text, no markdown. Get straight to the answer, no filler, no closing pleasantries.
 
-Only point to the contact form when it helps (the visitor wants to start, or you can't answer), and keep it short: "Get in touch at mikistec.com/#contact."
+Links: never show a bare URL. Write every link as [label](url) with a short natural label in the reply's language, e.g. [contact form](/#contact) or [formulár](/#contact), [pricing](/pricing), [coaching](/coaching), [demo](https://www.qviks.com/smart-web), [QVIKS](https://www.qviks.com). The chat shows only the label, linked.
+
+Only point to the contact form when it helps (the visitor wants to start, or you can't answer), and keep it short, e.g. "Just drop me a line via the [contact form](/#contact)."
 
 If asked whether you are a bot or a real person, say honestly that you're an AI answering for Miki, and that Miki personally reads everything sent through the contact form.
 
@@ -35,11 +38,44 @@ Only use the information below. If something is not covered, say you're not sure
 ${INFO}
 </info>`
 
+// What the visitor sees when OpenAI is down, out of credit or the key is missing.
+const DOWN_REPLY = "I'm taking a break right now. Drop me a line via the [contact form](/#contact) and I'll get back to you."
+
+// At most one alert mail per hour per warm instance, so an outage doesn't flood the inbox.
+const ALERT_EVERY_MS = 60 * 60_000
+let lastAlertAt = 0
+
+async function alertDown(reason: string) {
+  const to = process.env.CONTACT_TO
+  if (!to || Date.now() - lastAlertAt < ALERT_EVERY_MS) return
+  lastAlertAt = Date.now()
+  try {
+    await sendEmail({
+      to,
+      subject: `AI asistent na mikistec.com nefunguje: ${reason.slice(0, 80)}`,
+      html:
+        `<p>OpenAI odmietol požiadavku z chatu na mikistec.com. Návštevníci teraz vidia hlášku s odkazom na kontaktný formulár.</p>` +
+        `<p><strong>Dôvod:</strong> ${reason.replace(/[<>&]/g, "")}</p>` +
+        `<p>Kredit a limity: <a href="https://platform.openai.com/settings/organization/billing/overview">platform.openai.com</a>. ` +
+        `Ďalší mail najskôr o hodinu, ak to bude stále nefunkčné.</p>`,
+    })
+  } catch (err) {
+    console.error("[chat alert]", err)
+  }
+}
+
+// OpenAI errors carry a code like "insufficient_quota" or "invalid_api_key".
+function describe(err: unknown) {
+  const e = err as { status?: number; code?: string | null; message?: string }
+  return [e.code, e.status, e.message].filter(Boolean).join(" · ") || String(err)
+}
+
 type ChatMessage = { role: "user" | "assistant"; content: string }
 
 export async function POST(req: Request) {
   if (!process.env.OPENAI_API_KEY) {
-    return new Response("The assistant is not configured yet (missing OPENAI_API_KEY).", { status: 503 })
+    await alertDown("chýba OPENAI_API_KEY")
+    return new Response(DOWN_REPLY, { status: 503 })
   }
 
   // Browsers always send Origin on a fetch POST; plain curl scripts usually don't.
@@ -50,7 +86,7 @@ export async function POST(req: Request) {
     checkRateLimit(req, { limit: 150, window: 24 * 60 * 60_000, prefix: "chat-day" })
   if (limited) {
     return new Response(
-      "You've sent a lot of messages in a short time. Please use the contact form at mikistec.com/#contact and Miki will get back to you.",
+      "You've sent a lot of messages in a short time. Drop me a line via the [contact form](/#contact) and I'll get back to you.",
       { status: 429, headers: { "Cache-Control": "no-store" } },
     )
   }
@@ -72,15 +108,21 @@ export async function POST(req: Request) {
   const encoder = new TextEncoder()
   const readable = new ReadableStream({
     async start(controller) {
+      let sent = false
       try {
         const stream = await client.chat.completions.create({ model: MODEL, max_tokens: 600, stream: true, messages })
         for await (const chunk of stream) {
           const text = chunk.choices[0]?.delta?.content
-          if (text) controller.enqueue(encoder.encode(text))
+          if (text) {
+            sent = true
+            controller.enqueue(encoder.encode(text))
+          }
         }
       } catch (err) {
         console.error("[chat]", err)
-        controller.enqueue(encoder.encode("\n\nSorry, something went wrong. Please try again."))
+        controller.enqueue(encoder.encode(sent ? "\n\nSorry, I got cut off. Please try again." : DOWN_REPLY))
+        // Awaited before close so the serverless function isn't frozen mid-send.
+        await alertDown(describe(err))
       } finally {
         controller.close()
       }

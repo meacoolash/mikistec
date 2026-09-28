@@ -397,7 +397,7 @@ function WorkCard({ href, image, domain, title, note }: (typeof WORK)[number]) {
 
 function RecentWork() {
   return (
-    <section className="bg-paper px-6 pb-24 text-ink md:pb-32">
+    <section id="work" className="bg-paper px-6 pb-24 text-ink md:pb-32">
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-10 text-center">
         <div className="flex max-w-2xl flex-col items-center gap-6">
           <Eyebrow>Recent work</Eyebrow>

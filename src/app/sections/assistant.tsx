@@ -12,8 +12,10 @@ function pickSuggestions(asked: string[], n = 3) {
   return [...pool].sort(() => Math.random() - 0.5).slice(0, n)
 }
 
-// Site links the assistant mentions (mikistec.com/#contact, qviks.com/smart-web, /pricing...).
-const LINK = /(?:https?:\/\/)?(?:www\.)?(?:mikistec|qviks|joymeseci)\.com(?:\/[^\s,;!?)]*)?|(?<![\w.])\/(?:pricing|coaching|games\/pexeso)\b/g
+// Links in replies: [label](url) as the prompt asks for, plus bare site URLs
+// (mikistec.com/#contact, qviks.com/smart-web, /pricing...) as a fallback.
+const LINK =
+  /\[([^\]\n]+)\]\(([^)\s]+)\)|(?:https?:\/\/)?(?:www\.)?(?:mikistec|qviks|joymeseci)\.com(?:\/[^\s,;!?)]*)?|(?<![\w.])\/(?:pricing|coaching|games\/pexeso)\b/g
 
 // Turns those links into anchors. Our own pages stay in the tab (and close the
 // chat so the visitor sees where they landed); other sites open in a new one.
@@ -21,13 +23,15 @@ function Linkified({ text, onNavigate }: { text: string; onNavigate: () => void 
   const parts: React.ReactNode[] = []
   let last = 0
   for (const match of text.matchAll(LINK)) {
-    const raw = match[0].replace(/\.+$/, "")
+    const [whole, label, url] = match
+    const raw = url ? whole : whole.replace(/\.+$/, "")
+    const target = url ?? raw
     const start = match.index
     parts.push(text.slice(last, start))
-    const internal = raw.startsWith("/") || /mikistec\.com/.test(raw)
+    const internal = target.startsWith("/") || /^(?:https?:\/\/)?(?:www\.)?mikistec\.com/.test(target)
     const href = internal
-      ? raw.replace(/^(?:https?:\/\/)?(?:www\.)?mikistec\.com/, "") || "/"
-      : raw.startsWith("http") ? raw : `https://${raw}`
+      ? target.replace(/^(?:https?:\/\/)?(?:www\.)?mikistec\.com/, "") || "/"
+      : target.startsWith("http") ? target : `https://${target}`
     parts.push(
       <a
         key={start}
@@ -35,7 +39,7 @@ function Linkified({ text, onNavigate }: { text: string; onNavigate: () => void 
         {...(internal ? { onClick: onNavigate } : { target: "_blank", rel: "noopener noreferrer" })}
         className="font-semibold text-accent underline underline-offset-2"
       >
-        {raw}
+        {label ?? raw}
       </a>,
     )
     last = start + raw.length

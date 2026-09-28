@@ -45,14 +45,16 @@ Play the memory game at /games/pexeso: beat it in under 15 moves and get a simpl
 
 After launch: real support from a real person. When you need help, you get Miki, not a bot. He answers fast.
 
-Recent work
-- joymeseci.com: personal website for Joy Sevinç Meşeci, a somatic therapist.
-- joymeseci.com/return-to-roots: landing page for her five-day retreat in Nepal.
-- qviks.com/smart-web: smart website demo (chatbot, lead capture, mini CRM).
-- qviks.com: Miki's own SaaS product.
-Joy said: "Miki made the whole process incredibly easy for me. With very little effort on my side, he created something that truly feels like me and reflects who I am and what I do."
+Recent work (shown in the "See it live" section on the homepage, link: /#work)
+Talk about it generically, by type of project. Never name individual clients.
+- Personal websites: a home online for a brand or practitioner.
+- Landing pages that sell one specific product, e.g. a retreat.
+- Smart websites: AI chatbot, lead capture, mini CRM (demo: https://www.qviks.com/smart-web).
+- SaaS products: QVIKS (https://www.qviks.com), Miki's own platform.
+- Interactive experiences: custom interactive elements that make people stay, explore and engage.
+Clients say the process is easy and takes very little effort on their side, and that the result truly feels like them.
 
-Contact: the form at the bottom of the homepage (mikistec.com/#contact). Choose "Build it for me", "Coach me" or "Not sure yet". Miki replies within a day or two.
+Contact: the form at the bottom of the homepage (link: /#contact). Choose "Build it for me", "Coach me" or "Not sure yet". Miki replies within a day or two.
 `.trim()
 
 export const SUGGESTIONS = [
