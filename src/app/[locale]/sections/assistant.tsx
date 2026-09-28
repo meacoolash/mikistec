@@ -106,6 +106,17 @@ export function Assistant() {
     io.observe(how)
     return () => io.disconnect()
   }, [])
+
+  // Hide the launcher while the footer is on screen, so it doesn't cover the footer links.
+  const launcherRef = useRef<HTMLButtonElement>(null)
+  const [atFooter, setAtFooter] = useState(false)
+  useEffect(() => {
+    const footer = launcherRef.current?.closest("footer")
+    if (!footer) return
+    const io = new IntersectionObserver(([e]) => setAtFooter(e.isIntersecting))
+    io.observe(footer)
+    return () => io.disconnect()
+  }, [])
   const listRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -227,14 +238,15 @@ export function Assistant() {
           </form>
         </div>
       )}
-      {/* Phones: a round icon, and on the homepage only once "How it works" is reached. */}
+      {/* Phones: a round icon, and on the homepage only once "How it works" is reached. Hidden at the footer. */}
       <button
+        ref={launcherRef}
         type="button"
         onClick={toggle}
         aria-label={open ? t.close : t.open}
         className={`fixed bottom-6 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-accent font-body text-sm font-semibold tracking-wide text-paper shadow-lg transition-opacity hover:opacity-90 sm:h-auto sm:w-auto sm:rounded-md sm:px-5 sm:py-3 ${
           reached || open ? "" : "max-sm:hidden"
-        }`}
+        } ${atFooter && !open ? "hidden" : ""}`}
       >
         <span className="hidden sm:inline">{open ? t.close : t.open}</span>
         {open ? (

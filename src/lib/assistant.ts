@@ -49,7 +49,7 @@ Two ways to work with Miki (details on /pricing)
    - "A good website isn't one prompt." The real work is in the details between "it works" and "it's ready".
    - Revenue share: for selected projects that are launching something, Miki can work on a revenue-share basis instead of a fixed price. This is decided case by case; the visitor should get in touch.
 2. Build it yourself (1:1 coaching): from €390.
-   - 1:1 sessions with Miki, 3 sessions included in the price.
+   - 1:1 sessions with Miki, 3 sessions included in the price. Each session is 90 minutes.
    - Your AI development setup, Miki's ready-made instructions for your AI, build on your own laptop, work on your own business.
    - Websites, tools and simple agents (e.g. research, emails, social posts). Learn how to continue without Miki.
    - For people who can't code: you describe what you want in plain language, the agent writes the code.

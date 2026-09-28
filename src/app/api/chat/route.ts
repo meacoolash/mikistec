@@ -13,7 +13,7 @@ import { DEFAULT_LOCALE, isLocale, type Locale } from "@/lib/i18n"
 
 export const runtime = "nodejs"
 
-const MODEL = "gpt-4o-mini"
+const MODEL = "gpt-4.1-mini"
 const MAX_TURNS = 20
 const MAX_CHARS = 2000
 // History comes from the client, so cap the whole payload, not just each message.
@@ -27,7 +27,7 @@ const PAGE_LANGUAGE: Record<Locale, string> = { en: "English", sk: "Slovak", cz:
 // Czech, so guessing from the message kept answering Czech visitors in Slovak.
 function languageRule(locale: Locale) {
   if (locale === "en") {
-    return `The visitor is on the English version of the site. Reply only in Slovak, Czech or English. Decide by the visitor's latest message (also when written without diacritics): Slovak → Slovak, Czech → Czech, any other Slavic language → Slovak, anything else → English.`
+    return `The visitor is on the English version of the site, so reply in English by default. Switch only if the visitor's latest message is clearly written in another language (also without diacritics): Slovak → Slovak, Czech → Czech, any other Slavic language → Slovak. Never reply in Slovak or Czech to a message written in English.`
   }
   const lang = PAGE_LANGUAGE[locale]
   return `The visitor is on the ${lang} version of the site. Always reply in ${lang}, even if the message looks like another Slavic language or has no diacritics. Only if the latest message is clearly written in English, reply in English.`
@@ -53,7 +53,7 @@ ${languageRule(locale)}
 Today is ${new Date().toISOString().slice(0, 10)}; use it for anything about age or how long ago something was. Miki is ${new Date().getFullYear() - 1981} this year.
 Local terms: "Make it smart" is "Smart web" in Slovak and Czech; revenue share is "podiel z tržieb" / "podíl z tržeb"; coaching is "konzultácie" (Slovak) / "koučink" (Czech); write prices as "990 €" in Slovak and Czech. Contact form choices: "Build it for me" is "Vytvorte mi web" (Slovak) / "Vytvořte mi web" (Czech); "Coach me" is "Chcem konzultácie" (Slovak) / "Chci konzultace" (Czech); "Not sure yet" is "Ešte neviem" / "Ještě nevím".
 
-Only use the information below. If something is not covered, say you're not sure and point to the contact form. Do not invent prices, dates or promises. Politely decline topics unrelated to this work.
+Only use the information below. Never fill gaps with plausible guesses: no invented numbers, durations, dates, prices, timelines, availability, tools, clients or promises. If a detail is not in the info, don't describe it at all, not even vaguely ("usually a few weeks", "no fixed limit", "reliable servers" are all guesses). Say that you'll answer that personally and point to the contact form. Examples of things NOT in the info unless listed below: how long a normal website takes, hosting, number of revisions, weekend availability. Politely decline topics unrelated to this work.
 
 <info>
 ${INFO}
