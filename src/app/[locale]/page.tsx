@@ -653,8 +653,8 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 4. How it works */}
-      <section className="bg-paper px-6 py-24 text-ink md:py-32">
+      {/* 4. How it works (the assistant's phone launcher appears from here, see assistant.tsx) */}
+      <section id="how" className="bg-paper px-6 py-24 text-ink md:py-32">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-10 text-center">
           <Eyebrow>{t.howEyebrow}</Eyebrow>
           <h2 className="text-[clamp(2rem,1.5rem+2.8vw,3.5rem)] font-display font-black leading-[0.98] tracking-tighter">

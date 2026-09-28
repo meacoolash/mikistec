@@ -89,6 +89,23 @@ export function Assistant() {
   const [busy, setBusy] = useState(false)
   // Picked on open, not on render, so server and client markup never differ.
   const [suggestions, setSuggestions] = useState<string[]>([])
+  // Phone launcher visibility: pages with a #how section reveal it once that section scrolls into view.
+  const [reached, setReached] = useState(false)
+  useEffect(() => {
+    const how = document.getElementById("how")
+    if (!how) {
+      setReached(true)
+      return
+    }
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting || e.boundingClientRect.top < 0) {
+        setReached(true)
+        io.disconnect()
+      }
+    })
+    io.observe(how)
+    return () => io.disconnect()
+  }, [])
   const listRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -210,12 +227,23 @@ export function Assistant() {
           </form>
         </div>
       )}
+      {/* Phones: a round icon, and on the homepage only once "How it works" is reached. */}
       <button
         type="button"
         onClick={toggle}
-        className="fixed bottom-6 right-4 z-50 rounded-md bg-accent px-5 py-3 font-body text-sm font-semibold tracking-wide text-paper shadow-lg transition-opacity hover:opacity-90"
+        aria-label={open ? t.close : t.open}
+        className={`fixed bottom-6 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-accent font-body text-sm font-semibold tracking-wide text-paper shadow-lg transition-opacity hover:opacity-90 sm:h-auto sm:w-auto sm:rounded-md sm:px-5 sm:py-3 ${
+          reached || open ? "" : "max-sm:hidden"
+        }`}
       >
-        {open ? t.close : t.open}
+        <span className="hidden sm:inline">{open ? t.close : t.open}</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 sm:hidden" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          {open ? (
+            <path d="M6 6l12 12M18 6L6 18" />
+          ) : (
+            <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" />
+          )}
+        </svg>
       </button>
     </>
   )
