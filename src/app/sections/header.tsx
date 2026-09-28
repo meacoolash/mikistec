@@ -48,11 +48,11 @@ export const Header = ({ hideNav }: HeaderProps) => {
     return (
         // Sticky on large desktops only; bg-inherit takes the page's own background (paper or white).
         <header className="relative lg:sticky lg:top-0 z-40 lg:bg-inherit px-4 sm:px-6 h-20 flex items-center justify-between">
-            <Link className="text-[15px] sm:text-[17px] font-medium tracking-tight text-ink/70 hover:text-ink" href="/">
+            <Link className="hidden sm:inline text-[17px] font-medium tracking-tight text-ink/70 hover:text-ink" href="/">
                 Miki Stec
             </Link>
             {!hideNav && (
-                <nav className="flex items-center gap-1 sm:gap-3">
+                <nav className="flex w-full items-center justify-between gap-1 sm:w-auto sm:justify-end sm:gap-3">
                     <WithBubble href="/" label="I build" className={cls("/")} current={current("/")}>
                         I research your business, write it, build it, and launch it. You just say yes.
                     </WithBubble>

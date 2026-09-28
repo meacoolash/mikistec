@@ -12,37 +12,6 @@ type Entry = {
 
 const PROJECTS: { project: string; meta: string; entries: Entry[] }[] = [
   {
-    project: "mikistec.com",
-    meta: "Own site · AI agents & websites",
-    entries: [
-      {
-        name: "mikistec v2",
-        href: "/v2-draft",
-        status: "Concept",
-        note: "Next version of the homepage, modelled on matteoc.com: all IBM Plex Mono, grey / black / blue, boxed strips, orange scribble. Leads with AI FOMO, then two paths: learn to build your own website and agents with me, or have me build the website. Copy in content.ts; form switched off.",
-      },
-      {
-        name: "mikistec v3",
-        href: "/v3-draft",
-        status: "Concept",
-        note: "Same page as v2, warmer and a bit indie so it is not a 1:1 of matteoc.com: grained cream paper, ember hero and card, deep-green scribble, sage box, hard offset shadows, sentence-case bold headings, a tilted FOMO sticker. Still all IBM Plex Mono. Copy in content.ts; form switched off.",
-      },
-      {
-        name: "mikistec v4",
-        href: "/v4-draft",
-        status: "Concept",
-        note: "Back to the live homepage and its playfulness (sparkling \"good\", gold text, games, QVIKS pop-up). Main offer stays: I build your website and look after it. Adds the free concept, an AI chatbot plus real support, and a separate Learn AI page for people who want to build it themselves.",
-        pages: [
-          {
-            label: "Learn AI",
-            href: "/v4-draft/learn",
-            note: "The FOMO story from v3: painting hero, the problem, one-on-one sessions with my skills, fair questions.",
-          },
-        ],
-      },
-    ],
-  },
-  {
     project: "Manish Pole",
     meta: "Yoga, wisdom & meditation teacher · Ubud, Bali · dhyāna meditation community",
     entries: [
