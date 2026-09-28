@@ -237,13 +237,17 @@ export function Assistant() {
         }`}
       >
         <span className="hidden sm:inline">{open ? t.close : t.open}</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 sm:hidden" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          {open ? (
+        {open ? (
+          <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 sm:hidden" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
             <path d="M6 6l12 12M18 6L6 18" />
-          ) : (
-            <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" />
-          )}
-        </svg>
+          </svg>
+        ) : (
+          // Sparkles: the same four-point star as the homepage sparkles, one big and one small.
+          <svg viewBox="0 0 24 24" aria-hidden="true" className="h-7 w-7 sm:hidden" fill="currentColor">
+            <path transform="translate(1 5) scale(0.75)" d="M12 0C12 6.627 17.373 12 24 12C17.373 12 12 17.373 12 24C12 17.373 6.627 12 0 12C6.627 12 12 6.627 12 0Z" />
+            <path transform="translate(14 1) scale(0.38)" d="M12 0C12 6.627 17.373 12 24 12C17.373 12 12 17.373 12 24C12 17.373 6.627 12 0 12C6.627 12 12 6.627 12 0Z" />
+          </svg>
+        )}
       </button>
     </>
   )
