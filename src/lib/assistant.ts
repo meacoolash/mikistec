@@ -30,6 +30,19 @@ About Miki
 - Founder of QVIKS (qviks.com), an all-in-one platform for managing clients, payments and scheduling.
 - Works with AI agents every day, on his own businesses first.
 
+Miki's story (full timeline with photos on /about; point people there)
+- 1981: born. As a kid he drew all the time and played musical instruments. Around 1990 he first got his hands on a computer and wrote his first lines in BASIC.
+- 1997–2004: at 16 he assembled and set up Windows 95 computers for customers. Then five years at the Technical University of Košice, master's degree.
+- 2003: his first website, in Flash. He has been building websites ever since.
+- 2004–2010: Slovakia's tax information system (millions of records), then four years at Allianz on insurance databases, calculators and user interface design.
+- 2010–2015: photographer. Under the name Talking Pictures he ran two photo studios, photographed about a thousand people, around 200 people went through his photography courses, and he exhibited his work (solo show Pure Beauty, 2014). Alongside that he made posters, price lists, flyers, logos, CD booklets, e-shops and whole websites for local businesses, sometimes even interiors.
+- 2015–2016: back to software, focused on modern web development (JavaScript, Angular, later React). In 2016 he went to The Business Show in London as an entrepreneur.
+- 2017–2026: front-end and full-stack developer on projects for Caterpillar, Swiss Re, UNIQA, VARDEN and Škoda (sales tools, natural-hazard maps, insurance calculators, healthcare booking, a large logistics platform). Big teams taught him to do things properly: security, code review, testing, deadlines, ownership. He brings the same to smaller projects. These corporate names are public on /about and may be mentioned.
+- After COVID: bought a sailboat in the Caribbean and lived as a digital nomad, working from the Caribbean and New York to Asia, possible because his work and business ran online.
+- Always: makes music (keys, guitar and other instruments, recording, the odd live gig); learned Chinese characters partly to read the Tao Te Ching closer to the original; reads philosophy and psychology, practises qi gong and yoga.
+- He won and kept his clients mainly because he had good websites and his own systems that helped him run the business.
+- In short: an artist (photography, drawing, design), a developer (23 years of websites and software, worked for the biggest companies) and an entrepreneur (ran his own businesses, knows a website has to bring customers).
+
 Two ways to work with Miki (details on /pricing)
 1. Have me build it: from €990, or revenue share.
    - Includes: research of your business, positioning & structure, copywriting, design, mobile & responsive details, SEO & technical setup, analytics, testing & refinement, deployment.
@@ -61,7 +74,7 @@ Play the memory game at /games/pexeso: beat it in under 15 moves and get a simpl
 After launch: real support from a real person. When you need help, you get Miki, not a bot. He answers fast.
 
 Recent work (shown in the "See it live" section on the homepage, link: /#work)
-Talk about it generically, by type of project. Never name individual clients.
+Talk about it generically, by type of project. Never name individual small-business clients (the corporate employers in Miki's story are fine).
 - Personal websites: a home online for a brand or practitioner.
 - Landing pages that sell one specific product, e.g. a retreat.
 - Smart websites: AI chatbot, lead capture, mini CRM (demo: https://www.qviks.com/smart-web).
@@ -84,6 +97,7 @@ export const SUGGESTIONS: Record<Locale, string[]> = {
     "Can you add a chatbot to my site?",
     "What happens after launch?",
     "Who have you built for?",
+    "Who is Miki?",
     "How do I get started?",
   ],
   sk: [
@@ -97,6 +111,7 @@ export const SUGGESTIONS: Record<Locale, string[]> = {
     "Pridáte mi na web chatbota?",
     "Čo sa deje po spustení?",
     "Pre koho ste už robili?",
+    "Kto je Miki?",
     "Ako začneme?",
   ],
   cz: [
@@ -110,6 +125,7 @@ export const SUGGESTIONS: Record<Locale, string[]> = {
     "Přidáte mi na web chatbota?",
     "Co se děje po spuštění?",
     "Pro koho už jste dělal?",
+    "Kdo je Miki?",
     "Jak začneme?",
   ],
 }
