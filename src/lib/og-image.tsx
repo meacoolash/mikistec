@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og"
+import { isLocale, type Locale } from "@/lib/i18n"
 
 export const ogImageSize = { width: 1200, height: 630 }
 export const ogImageContentType = "image/png"
@@ -9,9 +10,24 @@ const PAPER = "#F6F5F3"
 const ACCENT = "#2E58E0"
 
 const LOGO_TEXT = "Miki Stec"
-const EYEBROW_TEXT = "Websites that sell"
-const HEADLINE_TEXT = "You're good. Your website should be too."
-const BODY_TEXT = "I research your business, write it, build it, and launch it. You just say yes."
+
+const COPY: Record<Locale, { eyebrow: string; headline: string; body: string }> = {
+  en: {
+    eyebrow: "Websites that sell",
+    headline: "You're good. Your website should be too.",
+    body: "I research your business, write it, build it, and launch it. You just say yes.",
+  },
+  sk: {
+    eyebrow: "Weby, ktoré predávajú",
+    headline: "Ste dobrí. Váš web by mal byť tiež.",
+    body: "Preskúmam vaše podnikanie, napíšem texty, vytvorím web a spustím ho. Vy len poviete áno.",
+  },
+  cz: {
+    eyebrow: "Weby, které prodávají",
+    headline: "Jste dobří. Váš web by měl být taky.",
+    body: "Prozkoumám vaše podnikání, napíšu texty, vytvořím web a spustím ho. Vy jen řeknete ano.",
+  },
+}
 
 // Google's css2 endpoint serves woff2 to modern browsers, but satori only
 // understands ttf/otf/woff — an old-browser user agent makes it fall back
@@ -54,12 +70,18 @@ function SparkleMark({ color, size }: { color: string; size: number }) {
   )
 }
 
-export async function renderOgImage() {
+/** Default export for [locale]/opengraph-image and twitter-image; params is a Promise in Next 15. */
+export async function renderOgImage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
+  const t = COPY[isLocale(locale) ? locale : "en"]
+  // The eyebrow is uppercased by CSS, so its font subset needs the capitals (incl. diacritics) too.
+  const eyebrowText = t.eyebrow + t.eyebrow.toUpperCase()
+
   const [archivoBlack, plexMedium, plexSemibold, plexRegular] = await Promise.all([
-    loadGoogleFont("Archivo", 900, HEADLINE_TEXT),
+    loadGoogleFont("Archivo", 900, t.headline),
     loadGoogleFont("IBM+Plex+Sans", 500, LOGO_TEXT),
-    loadGoogleFont("IBM+Plex+Sans", 600, EYEBROW_TEXT),
-    loadGoogleFont("IBM+Plex+Sans", 400, BODY_TEXT),
+    loadGoogleFont("IBM+Plex+Sans", 600, eyebrowText),
+    loadGoogleFont("IBM+Plex+Sans", 400, t.body),
   ])
 
   return new ImageResponse(
@@ -106,7 +128,7 @@ export async function renderOgImage() {
           }}
         >
           <SparkleMark color={ACCENT} size={18} />
-          <span style={{ display: "flex" }}>{EYEBROW_TEXT}</span>
+          <span style={{ display: "flex" }}>{t.eyebrow}</span>
           <SparkleMark color={ACCENT} size={18} />
         </div>
 
@@ -124,7 +146,7 @@ export async function renderOgImage() {
             maxWidth: 980,
           }}
         >
-          {HEADLINE_TEXT}
+          {t.headline}
         </div>
 
         <div
@@ -139,7 +161,7 @@ export async function renderOgImage() {
             maxWidth: 820,
           }}
         >
-          {BODY_TEXT}
+          {t.body}
         </div>
       </div>
     ),

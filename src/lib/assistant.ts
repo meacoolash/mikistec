@@ -4,9 +4,21 @@
  * redeploy to change what it says. Keep INFO in step with the pages.
  */
 
-export const ASSISTANT_NAME = "Miki's AI assistant"
+import type { Locale } from "@/lib/i18n"
 
-export const GREETING = "Hi! AI here, answering in Miki's voice. What would you like to know?"
+export const ASSISTANT_NAME: Record<Locale, string> = {
+  en: "Miki's AI assistant",
+  sk: "Mikiho AI asistent",
+  cz: "Mikiho AI asistent",
+}
+
+export const GREETING: Record<Locale, string> = {
+  en: "Hi! AI here, answering in Miki's voice. What would you like to know?",
+  sk: "Dobrý deň! Tu AI, odpovedám Mikiho hlasom. Čo by ste chceli vedieť?",
+  cz: "Dobrý den! Tady AI, odpovídám Mikiho hlasem. Co byste chtěli vědět?",
+}
+
+// INFO is model context, so it stays English; the model replies in the visitor's language.
 
 export const INFO = `
 Miki Stec builds websites that sell, for small businesses and solo practitioners. Tagline: "You're good. Your website should be too."
@@ -40,6 +52,9 @@ Make it smart (upgrade to a website)
 - AI chatbot, lead capture, mini CRM. The website becomes a small system for the business.
 - Live demo: qviks.com/smart-web. The price is not listed; the visitor should ask Miki.
 
+Express (upgrade to a website)
+- Miki delivers the website within 24 hours. The price is not listed; the visitor should ask Miki via the contact form.
+
 Also included / possible: speed, SEO, analytics, an AI chatbot, integrations, tools, simple games and interactive elements.
 Play the memory game at /games/pexeso: beat it in under 15 moves and get a simple custom game built into your own website, free.
 
@@ -57,16 +72,44 @@ Clients say the process is easy and takes very little effort on their side, and 
 Contact: the form at the bottom of the homepage (link: /#contact). Choose "Build it for me", "Coach me" or "Not sure yet". Miki replies within a day or two.
 `.trim()
 
-export const SUGGESTIONS = [
-  "How much does a website cost?",
-  "What's included for €990?",
-  "How does revenue share work?",
-  "What do I need to send you?",
-  "How does the coaching work?",
-  "I can't code. Is coaching for me?",
-  "What is Make it smart?",
-  "Can you add a chatbot to my site?",
-  "What happens after launch?",
-  "Who have you built for?",
-  "How do I get started?",
-]
+export const SUGGESTIONS: Record<Locale, string[]> = {
+  en: [
+    "How much does a website cost?",
+    "What's included for €990?",
+    "How does revenue share work?",
+    "What do I need to send you?",
+    "How does the coaching work?",
+    "I can't code. Is coaching for me?",
+    "What is Make it smart?",
+    "Can you add a chatbot to my site?",
+    "What happens after launch?",
+    "Who have you built for?",
+    "How do I get started?",
+  ],
+  sk: [
+    "Koľko stojí web?",
+    "Čo dostanem za 990 €?",
+    "Ako funguje podiel z tržieb?",
+    "Čo vám mám poslať?",
+    "Ako prebiehajú konzultácie?",
+    "Neviem programovať. Sú konzultácie pre mňa?",
+    "Čo je Smart web?",
+    "Pridáte mi na web chatbota?",
+    "Čo sa deje po spustení?",
+    "Pre koho ste už robili?",
+    "Ako začneme?",
+  ],
+  cz: [
+    "Kolik stojí web?",
+    "Co dostanu za 990 €?",
+    "Jak funguje podíl z tržeb?",
+    "Co vám mám poslat?",
+    "Jak probíhá koučink?",
+    "Neumím programovat. Je koučink pro mě?",
+    "Co je Smart web?",
+    "Přidáte mi na web chatbota?",
+    "Co se děje po spuštění?",
+    "Pro koho už jste dělal?",
+    "Jak začneme?",
+  ],
+}

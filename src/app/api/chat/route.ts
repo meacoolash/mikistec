@@ -3,6 +3,7 @@ import type { ChatCompletionMessageParam } from "openai/resources/chat/completio
 import { checkRateLimit } from "@/lib/rate-limit-check"
 import { INFO } from "@/lib/assistant"
 import { sendEmail } from "@/lib/email/email"
+import { DEFAULT_LOCALE, isLocale, type Locale } from "@/lib/i18n"
 
 /**
  * POST /api/chat — the site assistant. Streams plain text back. Ported from
@@ -20,26 +21,62 @@ const MAX_TOTAL_CHARS = 8000
 
 const ALLOWED_ORIGIN = /^https?:\/\/(localhost(:\d+)?|(www\.)?mikistec\.com)$/i
 
-const SYSTEM = `You are the AI assistant on Miki Stec's website (mikistec.com) and you answer in Miki's voice: first person, as Miki ("I build...", "You don't need to send me anything"). Never call Miki "he" or "Miki". The info below is written about Miki in the third person; turn it into first person.
+const PAGE_LANGUAGE: Record<Locale, string> = { en: "English", sk: "Slovak", cz: "Czech" }
+
+// On /sk and /cz the page decides: short questions look alike in Slovak and
+// Czech, so guessing from the message kept answering Czech visitors in Slovak.
+function languageRule(locale: Locale) {
+  if (locale === "en") {
+    return `The visitor is on the English version of the site. Reply only in Slovak, Czech or English. Decide by the visitor's latest message (also when written without diacritics): Slovak → Slovak, Czech → Czech, any other Slavic language → Slovak, anything else → English.`
+  }
+  const lang = PAGE_LANGUAGE[locale]
+  return `The visitor is on the ${lang} version of the site. Always reply in ${lang}, even if the message looks like another Slavic language or has no diacritics. Only if the latest message is clearly written in English, reply in English.`
+}
+
+function system(locale: Locale) {
+  return `You are the AI assistant on Miki Stec's website (mikistec.com) and you answer in Miki's voice: first person, as Miki ("I build...", "You don't need to send me anything"). Never call Miki "he" or "Miki". The info below is written about Miki in the third person; turn it into first person. Miki is a man, so use masculine forms in Slovak and Czech. Address the visitor formally (vykanie: "vy" in Slovak and Czech).
 
 Keep it short: usually one sentence, two at most. Plain text, no markdown. Get straight to the answer, no filler, no closing pleasantries.
 
-Links: never show a bare URL. Write every link as [label](url) with a short natural label in the reply's language, e.g. [contact form](/#contact) or [formulár](/#contact), [pricing](/pricing), [coaching](/coaching), [demo](https://www.qviks.com/smart-web), [QVIKS](https://www.qviks.com). The chat shows only the label, linked.
+Links: never show a bare URL. Write every link as [label](url) with a short natural label in the reply's language. For pages on this site, always write the plain unprefixed path (/pricing, /coaching, /#contact, /#work, /games/pexeso), never /sk/... or /cz/...; the chat moves them into the visitor's language. Examples:
+- English: [contact form](/#contact), [pricing](/pricing), [coaching](/coaching)
+- Slovak: [kontaktný formulár](/#contact), [cenník](/pricing), [konzultácie](/coaching)
+- Czech: [kontaktní formulář](/#contact), [ceník](/pricing), [koučink](/coaching)
+- External: [demo](https://www.qviks.com/smart-web), [QVIKS](https://www.qviks.com)
+The chat shows only the label, linked.
 
 Only point to the contact form when it helps (the visitor wants to start, or you can't answer), and keep it short, e.g. "Just drop me a line via the [contact form](/#contact)."
 
 If asked whether you are a bot or a real person, say honestly that you're an AI answering for Miki, and that Miki personally reads everything sent through the contact form.
 
-Reply only in Slovak or English, never in any other language. If the visitor's latest message is in Slovak or any other Slavic language (Czech, Croatian, Serbian, Polish...), also when written without diacritics, reply in Slovak. Otherwise reply in English.
+${languageRule(locale)}
+Local terms: "Make it smart" is "Smart web" in Slovak and Czech; revenue share is "podiel z tržieb" / "podíl z tržeb"; coaching is "konzultácie" (Slovak) / "koučink" (Czech); write prices as "990 €" in Slovak and Czech. Contact form choices: "Build it for me" is "Vytvorte mi web" (Slovak) / "Vytvořte mi web" (Czech); "Coach me" is "Chcem konzultácie" (Slovak) / "Chci konzultace" (Czech); "Not sure yet" is "Ešte neviem" / "Ještě nevím".
 
 Only use the information below. If something is not covered, say you're not sure and point to the contact form. Do not invent prices, dates or promises. Politely decline topics unrelated to this work.
 
 <info>
 ${INFO}
 </info>`
+}
 
 // What the visitor sees when OpenAI is down, out of credit or the key is missing.
-const DOWN_REPLY = "I'm taking a break right now. Drop me a line via the [contact form](/#contact) and I'll get back to you."
+const DOWN_REPLY: Record<Locale, string> = {
+  en: "I'm taking a break right now. Drop me a line via the [contact form](/#contact) and I'll get back to you.",
+  sk: "Práve mám pauzu. Napíšte mi cez [kontaktný formulár](/#contact) a ozvem sa vám.",
+  cz: "Právě mám pauzu. Napište mi přes [kontaktní formulář](/#contact) a ozvu se vám.",
+}
+
+const RATE_LIMITED: Record<Locale, string> = {
+  en: "You've sent a lot of messages in a short time. Drop me a line via the [contact form](/#contact) and I'll get back to you.",
+  sk: "Za krátky čas ste poslali veľa správ. Napíšte mi cez [kontaktný formulár](/#contact) a ozvem sa vám.",
+  cz: "Za krátkou dobu jste poslali hodně zpráv. Napište mi přes [kontaktní formulář](/#contact) a ozvu se vám.",
+}
+
+const CUT_OFF: Record<Locale, string> = {
+  en: "\n\nSorry, I got cut off. Please try again.",
+  sk: "\n\nPrepáčte, prerušilo ma to. Skúste to prosím znova.",
+  cz: "\n\nPromiňte, přerušilo mě to. Zkuste to prosím znovu.",
+}
 
 // At most one alert mail per hour per warm instance, so an outage doesn't flood the inbox.
 const ALERT_EVERY_MS = 60 * 60_000
@@ -73,9 +110,12 @@ function describe(err: unknown) {
 type ChatMessage = { role: "user" | "assistant"; content: string }
 
 export async function POST(req: Request) {
+  const body = (await req.json().catch(() => null)) as { messages?: ChatMessage[]; locale?: unknown } | null
+  const locale: Locale = isLocale(body?.locale) ? body.locale : DEFAULT_LOCALE
+
   if (!process.env.OPENAI_API_KEY) {
     await alertDown("chýba OPENAI_API_KEY")
-    return new Response(DOWN_REPLY, { status: 503 })
+    return new Response(DOWN_REPLY[locale], { status: 503 })
   }
 
   // Browsers always send Origin on a fetch POST; plain curl scripts usually don't.
@@ -85,13 +125,9 @@ export async function POST(req: Request) {
     checkRateLimit(req, { limit: 30, window: 60 * 60_000, prefix: "chat-hour" }) ??
     checkRateLimit(req, { limit: 150, window: 24 * 60 * 60_000, prefix: "chat-day" })
   if (limited) {
-    return new Response(
-      "You've sent a lot of messages in a short time. Drop me a line via the [contact form](/#contact) and I'll get back to you.",
-      { status: 429, headers: { "Cache-Control": "no-store" } },
-    )
+    return new Response(RATE_LIMITED[locale], { status: 429, headers: { "Cache-Control": "no-store" } })
   }
 
-  const body = (await req.json().catch(() => null)) as { messages?: ChatMessage[] } | null
   const history: ChatMessage[] = (Array.isArray(body?.messages) ? body.messages : [])
     .filter((m) => (m.role === "user" || m.role === "assistant") && typeof m.content === "string" && m.content.trim())
     .slice(-MAX_TURNS)
@@ -102,7 +138,12 @@ export async function POST(req: Request) {
 
   if (history.at(-1)?.role !== "user") return new Response("Bad request", { status: 400 })
 
-  const messages: ChatCompletionMessageParam[] = [{ role: "system", content: SYSTEM }, ...history]
+  // The language reminder goes last too: a small model follows the latest instruction best.
+  const messages: ChatCompletionMessageParam[] = [
+    { role: "system", content: system(locale) },
+    ...history,
+    ...(locale === "en" ? [] : [{ role: "system" as const, content: languageRule(locale) }]),
+  ]
 
   const client = new OpenAI()
   const encoder = new TextEncoder()
@@ -120,7 +161,7 @@ export async function POST(req: Request) {
         }
       } catch (err) {
         console.error("[chat]", err)
-        controller.enqueue(encoder.encode(sent ? "\n\nSorry, I got cut off. Please try again." : DOWN_REPLY))
+        controller.enqueue(encoder.encode(sent ? CUT_OFF[locale] : DOWN_REPLY[locale]))
         // Awaited before close so the serverless function isn't frozen mid-send.
         await alertDown(describe(err))
       } finally {

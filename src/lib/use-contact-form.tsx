@@ -2,12 +2,35 @@
 
 import { useState } from "react"
 import type { ContactSource } from "@/lib/contact-sources"
+import type { Locale } from "@/lib/i18n"
+import { useLocale } from "@/lib/i18n-client"
+
+const ERRORS: Record<Locale, { tooMany: string; failed: string; offline: string }> = {
+  en: {
+    tooMany: "Too many tries. Please wait a minute and send again.",
+    failed: "Could not send. Please try again in a moment.",
+    offline: "Could not send. Please check your connection and try again.",
+  },
+  sk: {
+    tooMany: "Príliš veľa pokusov. Počkajte minútu a skúste to znova.",
+    failed: "Nepodarilo sa odoslať. Skúste to o chvíľu znova.",
+    offline: "Nepodarilo sa odoslať. Skontrolujte pripojenie a skúste to znova.",
+  },
+  cz: {
+    tooMany: "Příliš mnoho pokusů. Počkejte minutu a zkuste to znovu.",
+    failed: "Nepodařilo se odeslat. Zkuste to za chvíli znovu.",
+    offline: "Nepodařilo se odeslat. Zkontrolujte připojení a zkuste to znovu.",
+  },
+}
 
 /**
  * Client side of /api/contact. Reads the form's named fields (`name`, `email`,
- * `message`, plus the `hp_url` honeypot from <Honeypot />) and posts them as JSON.
+ * `message`, plus the `hp_url` honeypot from <Honeypot />) and posts them as JSON,
+ * with the page's language so errors and the reply can match it.
  */
 export function useContactForm(source: ContactSource) {
+  const locale = useLocale()
+  const t = ERRORS[locale]
   const [submitting, setSubmitting] = useState(false)
   const [succeeded, setSucceeded] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -22,22 +45,22 @@ export function useContactForm(source: ContactSource) {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...fields, source }),
+        body: JSON.stringify({ ...fields, source, locale }),
       })
       if (!res.ok) {
         const data = (await res.json().catch(() => ({}))) as { error?: string }
         setError(
           res.status === 429
-            ? "Too many tries. Please wait a minute and send again."
+            ? t.tooMany
             : data.error && res.status === 400
               ? data.error
-              : "Could not send. Please try again in a moment."
+              : t.failed
         )
         return
       }
       setSucceeded(true)
     } catch {
-      setError("Could not send. Please check your connection and try again.")
+      setError(t.offline)
     } finally {
       setSubmitting(false)
     }

@@ -3,6 +3,13 @@ import { checkRateLimit } from "@/lib/rate-limit-check"
 import { sanitizeText, validateEmail, escapeHtml } from "@/lib/validation"
 import { sendEmail } from "@/lib/email/email"
 import { CONTACT_SOURCES, isContactSource } from "@/lib/contact-sources"
+import { isLocale, LOCALE_LABEL, type Locale } from "@/lib/i18n"
+
+const INVALID_CONTACT: Record<Locale, string> = {
+  en: "Please enter your name and a valid email.",
+  sk: "Zadajte meno a platný e-mail.",
+  cz: "Zadejte jméno a platný e-mail.",
+}
 
 /**
  * POST /api/contact — every form on the site (landing contact, Return to Roots
@@ -59,11 +66,13 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unknown form." }, { status: 400 })
     }
     const source = CONTACT_SOURCES[sourceKey]
+    // The page's language, so Miki knows which one to reply in.
+    const locale: Locale = isLocale(body.locale) ? body.locale : "en"
 
     const email = validateEmail(body.email)
     const name = sanitizeText(body.name, 120)
     if (!email || !name) {
-      return NextResponse.json({ error: "Please enter your name and a valid email." }, { status: 400 })
+      return NextResponse.json({ error: INVALID_CONTACT[locale] }, { status: 400 })
     }
     const message = sanitizeText(body.message, 2000)
     // The landing form's "What do you want?" choice; anything else is ignored.
@@ -90,6 +99,7 @@ export async function POST(req: Request) {
       html:
         `<p><strong>Name:</strong> ${escapeHtml(name)}<br>` +
         `<strong>Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a>` +
+        `<br><strong>Language:</strong> ${LOCALE_LABEL[locale]}` +
         (wants ? `<br><strong>Wants:</strong> ${escapeHtml(wants)}` : "") +
         `</p>` +
         messageBlock,
