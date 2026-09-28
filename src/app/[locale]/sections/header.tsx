@@ -43,7 +43,7 @@ const ITEM = "px-2 sm:px-3 text-[15px] sm:text-[17px] font-medium transition-col
 const IDLE = "text-ink/70 hover:text-ink"
 const ACTIVE = "text-ink underline"
 
-/* Menu item with a comic speech bubble on hover or keyboard focus; the bubble is a link too. */
+/* Menu item with a comic speech bubble on hover or keyboard focus (desktop only); the bubble is a link too. */
 function WithBubble({ href, label, className, current, children }: {
     href: string,
     label: string,
@@ -56,7 +56,7 @@ function WithBubble({ href, label, className, current, children }: {
             <Link className={className} href={href} aria-current={current}>
                 {label}
             </Link>
-            <span className="invisible absolute left-1/2 top-full z-50 w-[min(15rem,calc(100vw_-_2rem))] -translate-x-1/2 pt-4 opacity-0 transition-opacity group-has-[:focus-visible]:visible group-has-[:focus-visible]:opacity-100 group-hover:visible group-hover:opacity-100">
+            <span className="invisible absolute max-lg:hidden left-1/2 top-full z-50 w-[min(15rem,calc(100vw_-_2rem))] -translate-x-1/2 pt-4 opacity-0 transition-opacity group-has-[:focus-visible]:visible group-has-[:focus-visible]:opacity-100 group-hover:visible group-hover:opacity-100">
                 <Link
                     href={href}
                     className="relative block rounded-[1.4rem] border-2 border-ink bg-white px-5 py-4 text-center text-base leading-snug text-ink transition-colors hover:text-accent"
