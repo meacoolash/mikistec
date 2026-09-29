@@ -17,6 +17,7 @@ const COPY = {
         coachBubble: "I coach you to build your own website and AI agents, one-on-one.",
         pricing: "Pricing",
         about: "About",
+        aboutMe: " me",
         cta: "YES",
     },
     sk: {
@@ -26,6 +27,7 @@ const COPY = {
         coachBubble: "Naučím vás postaviť si vlastný web a AI agentov, individuálne.",
         pricing: "Cenník",
         about: "O mne",
+        aboutMe: "",
         cta: "ÁNO",
     },
     cz: {
@@ -35,6 +37,7 @@ const COPY = {
         coachBubble: "Naučím vás postavit si vlastní web a AI agenty, individuálně.",
         pricing: "Ceník",
         about: "O mně",
+        aboutMe: "",
         cta: "ANO",
     },
 }
@@ -97,6 +100,7 @@ export const Header = ({ hideNav }: HeaderProps) => {
                     </Link>
                     <Link className={cls("/about")} href="/about" aria-current={current("/about")}>
                         {t.about}
+                        {t.aboutMe && <span className="hidden md:inline">{t.aboutMe}</span>}
                     </Link>
                     {/* On phones the About link takes the CTA's place; the bar has no room for both. */}
                     <Link
