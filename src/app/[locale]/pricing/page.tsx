@@ -289,7 +289,7 @@ export default async function PricingPage({ params }: Props) {
 
             {/* Smart upgrade: sits under the €990 column only, never folded into the base price */}
             <a
-              href="https://www.qviks.com/smart-web"
+              href="https://sites.qviks.com/smart-demo"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex flex-col gap-4 rounded-[14px] border-2 border-dashed border-accent p-7 transition-colors hover:bg-accent/5 md:col-start-2 md:p-8"

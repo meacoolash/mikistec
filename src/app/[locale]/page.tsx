@@ -331,9 +331,9 @@ const WORK = [
     domain: "joymeseci.com/return-to-roots",
   },
   {
-    href: "https://www.qviks.com/smart-web",
+    href: "https://sites.qviks.com/smart-demo",
     image: "/work/smart-web.jpg",
-    domain: "qviks.com/smart-web",
+    domain: "sites.qviks.com/smart-demo",
   },
   {
     href: "https://www.qviks.com",
@@ -697,7 +697,7 @@ export default function Page() {
       {/* 4b. Upgrades (Smart website, Express): the idea only, the price lives on /pricing */}
       <section className="bg-paper px-6 pb-24 text-ink md:pb-32">
         <a
-          href="https://www.qviks.com/smart-web"
+          href="https://sites.qviks.com/smart-demo"
           target="_blank"
           rel="noopener noreferrer"
           className="group mx-auto flex max-w-2xl flex-col items-center gap-4 rounded-[14px] border-2 border-dashed border-accent px-6 py-10 text-center transition-colors hover:bg-accent/5 md:px-12"

@@ -1,6 +1,6 @@
 /**
  * The site's AI assistant: everything it knows lives here, in code (no DB).
- * Same idea as qviks.com/smart-web, minus the admin panel: edit this file and
+ * Same idea as sites.qviks.com/smart-demo, minus the admin panel: edit this file and
  * redeploy to change what it says. Keep INFO in step with the pages.
  */
 
@@ -64,7 +64,7 @@ How it works
 
 Make it smart (upgrade to a website)
 - AI chatbot, lead capture, mini CRM. The website becomes a small system for the business.
-- Live demo: qviks.com/smart-web. The price is not listed; the visitor should ask Miki.
+- Live demo: sites.qviks.com/smart-demo. The price is not listed; the visitor should ask Miki.
 
 Express (upgrade to a website)
 - Miki delivers the website within 24 hours. The price is not listed; the visitor should ask Miki via the contact form.
@@ -80,7 +80,7 @@ Recent work (shown in the "See it live" section on the homepage, link: /#work)
 Talk about it generically, by type of project. Never name individual small-business clients (the corporate employers in Miki's story are fine).
 - Personal websites: a home online for a brand or practitioner.
 - Landing pages that sell one specific product, e.g. a retreat.
-- Smart websites: AI chatbot, lead capture, mini CRM (demo: https://www.qviks.com/smart-web).
+- Smart websites: AI chatbot, lead capture, mini CRM (demo: https://sites.qviks.com/smart-demo).
 - SaaS products: QVIKS (https://www.qviks.com), Miki's own platform.
 - Interactive experiences: custom interactive elements that make people stay, explore and engage.
 Clients say the process is easy and takes very little effort on their side, and that the result truly feels like them.

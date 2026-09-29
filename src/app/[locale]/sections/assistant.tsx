@@ -42,7 +42,7 @@ function pickSuggestions(locale: Locale, asked: string[], n = 3) {
 }
 
 // Links in replies: [label](url) as the prompt asks for, plus bare site URLs
-// (mikistec.com/#contact, qviks.com/smart-web, /pricing...) as a fallback.
+// (mikistec.com/#contact, sites.qviks.com/smart-demo, /pricing...) as a fallback.
 // The model writes unprefixed paths; Linkified moves them into the page's language
 // (stripping a prefix first, in case the model adds one anyway).
 const LINK =
