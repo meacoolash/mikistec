@@ -6,14 +6,9 @@ import Link, { useLocale } from "@/lib/i18n-client"
 import { Header } from "../sections/header"
 import { Footer } from "../sections/footer"
 import { CHAPTER_IDS, COPY, type ChapterId } from "./copy"
+import { FACES, FaceImg, FaceStrip, type Face } from "./faces"
 
 const DIR = "/about"
-
-/** "How I looked back then": one square face per era, shown in the hero strip and the sticky column. */
-const FACES = ["1981", "1988", "1999", "2004", "2010", "2015", "2019", "2022", "2026"] as const
-type Face = (typeof FACES)[number]
-/** Replaced photos get a new file name so the image optimizer cache can't serve the old one. */
-const FACE_FILE: Partial<Record<Face, string>> = { "2015": "2015-eyes" }
 
 const CHAPTER_FACE: Record<ChapterId, Face> = {
   birth: "1981",
@@ -132,20 +127,6 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   )
 }
 
-/** size = the largest CSS pixel width the circle is shown at, so Next serves a small file. */
-function FaceImg({ face, size, className = "", priority }: { face: Face; size: number; className?: string; priority?: boolean }) {
-  return (
-    <Image
-      src={`${DIR}/faces/${FACE_FILE[face] ?? face}.jpg`}
-      alt=""
-      width={size}
-      height={size}
-      priority={priority}
-      className={`h-full w-full rounded-full object-cover ${className}`}
-    />
-  )
-}
-
 /** Muted looping clip that only plays while on screen, framed like a browser window. */
 function BrowserVideo({ m }: { m: Media }) {
   const ref = useRef<HTMLVideoElement>(null)
@@ -247,16 +228,7 @@ export function AboutView() {
             <p className="max-w-xl text-lg text-ink/70">{t.intro}</p>
 
             <figure className="mt-6 w-full">
-              <ol className="flex flex-wrap justify-center gap-y-6 pl-3 md:flex-nowrap">
-                {FACES.map((f, i) => (
-                  <li key={f} className="group -ml-3 flex flex-col items-center gap-2" style={{ zIndex: i }}>
-                    <div className="h-16 w-16 rounded-full border-[3px] border-paper shadow-[0_8px_20px_-10px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:-translate-y-2 group-hover:scale-110 sm:h-20 sm:w-20 lg:h-24 lg:w-24">
-                      <FaceImg face={f} size={96} priority />
-                    </div>
-                    <span className="text-xs font-semibold tabular-nums text-ink/50">{f}</span>
-                  </li>
-                ))}
-              </ol>
+              <FaceStrip priority />
             </figure>
           </div>
         </section>

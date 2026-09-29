@@ -27,6 +27,8 @@ const en = {
   clear: "Clear message, clear structure, clear action.",
   founder: "I am founder of",
   aiDaily: "I work with AI agents every day, on my own businesses first.",
+  aboutTitle: "I've been making things since 1981.",
+  aboutMore: "More about me",
 
   simplicity: "I give you simplicity.",
   extras: "+ Speed, SEO, analytics, an AI chatbot, integrations, tools, games,",
@@ -141,6 +143,8 @@ export const COPY: Record<Locale, typeof en> = {
     clear: "Jasné posolstvo. Jasná štruktúra. Jasný ďalší krok.",
     founder: "Som zakladateľom",
     aiDaily: "S AI agentmi pracujem každý deň na vlastných projektoch.",
+    aboutTitle: "Tvorím od roku 1981.",
+    aboutMore: "Viac o mne",
 
     simplicity: "Dávam vám jednoduchosť.",
     extras: "+ Rýchlosť, SEO, analytika, AI chatbot, integrácie, nástroje, hry",
@@ -248,6 +252,8 @@ export const COPY: Record<Locale, typeof en> = {
     clear: "Jasné sdělení. Jasná struktura. Jasný další krok.",
     founder: "Jsem zakladatelem",
     aiDaily: "S AI agenty pracuji každý den na vlastních projektech.",
+    aboutTitle: "Tvořím od roku 1981.",
+    aboutMore: "Víc o mně",
 
     simplicity: "Dávám vám jednoduchost.",
     extras: "+ Rychlost, SEO, analytika, AI chatbot, integrace, nástroje, hry",

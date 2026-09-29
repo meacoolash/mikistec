@@ -8,6 +8,7 @@ import { useContactForm, Honeypot } from "@/lib/use-contact-form"
 import { Header } from "./sections/header"
 import { Footer } from "./sections/footer"
 import { COPY } from "./copy"
+import { FaceStrip } from "./about/faces"
 
 function useCopy() {
   return COPY[useLocale()]
@@ -16,13 +17,15 @@ function useCopy() {
 function Eyebrow({
   children,
   tone = "accent",
+  size = "text-xs",
 }: {
   children: React.ReactNode
   tone?: "accent" | "paper" | "gold"
+  size?: string
 }) {
   return (
     <p
-      className={`flex items-center justify-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase ${
+      className={`flex items-center justify-center gap-2 ${size} font-semibold tracking-[0.2em] uppercase ${
         tone === "paper" ? "text-paper" : tone === "gold" ? "text-[#FFD75E]" : "text-accent"
       }`}
     >
@@ -599,7 +602,7 @@ export default function Page() {
       {/* 2. Proof */}
       <section className="bg-ink px-6 py-24 text-paper md:py-32">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 text-center">
-          <Eyebrow>{t.whyEyebrow}</Eyebrow>
+          <Eyebrow tone="gold" size="text-sm md:text-base">{t.whyEyebrow}</Eyebrow>
           <h2 className="text-[clamp(2rem,1.5rem+2.8vw,3.5rem)] font-display font-black leading-[0.98] tracking-tighter">
             {t.whyTitle}
           </h2>
@@ -632,6 +635,24 @@ export default function Page() {
           <p className="text-lg text-paper/75">
             {t.aiDaily}
           </p>
+        </div>
+      </section>
+
+      {/* 2b. About teaser: same hero as /about, then on to the full story */}
+      <section className="bg-white px-6 py-24 text-ink md:py-32">
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 text-center">
+          <h2 className="max-w-2xl text-[clamp(1.75rem,1.5rem+1vw,2.25rem)] font-display font-black leading-[1.05] tracking-tight">
+            {t.aboutTitle}
+          </h2>
+          <Link href="/about" aria-label={t.aboutMore} className="mt-6 w-full">
+            <FaceStrip ring="border-white" />
+          </Link>
+          <Link
+            href="/about"
+            className="mt-4 inline-flex items-center justify-center gap-2 rounded-md bg-accent px-7 py-3 text-sm font-semibold tracking-wide text-paper transition-opacity hover:opacity-90"
+          >
+            {t.aboutMore} <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </section>
 
